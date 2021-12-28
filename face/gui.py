@@ -1,20 +1,14 @@
 import tkinter as tk
-from tkinter import ttk
+from tkinter import StringVar, ttk
 
-#input to variable
-from core import form
+'''#input to variable
+from core import form'''
 
 #setup root
 root = tk.Tk()
 root.geometry("750x700")
 root.title("Auswertungsbogen")
 root.resizable(0, 0)
-
-"""#grid config
-root.columnconfigure(0, weight=1)
-root.columnconfigure(1, weight=3)
-root.columnconfigure(2, weight=3)
-root.columnconfigure(3, weight=3)"""
 
 #age
 age_label = ttk.Label(root, text="Alter:")
@@ -53,20 +47,16 @@ culture_entry.grid(row=2, column=3, padx=5, pady=5)
 luck_label = ttk.Label(root, text="Signalfarbe Glück:")
 luck_label.grid(row=3, column=0, padx=5, pady=5, sticky=tk.W)
 
-luck_button_green = ttk.Button(root, text="Grün")
-luck_button_green.grid(row=3, column=1, padx=5, pady=5)
-
-luck_label_other = ttk.Label(root, text="Andere:")
-luck_label_other.grid(row=3, column=2, padx=5, pady=5, sticky=tk.E)
-
-luck_entry_other = ttk.Entry(root)
-luck_entry_other.grid(row=3, column=3, padx=5, pady=5)
+luck_color = StringVar(root)
+luck_color.set("Grün")
+luck_drop_down = ttk.OptionMenu(root, luck_color, "Grün", "Weiß", "Gelb", "Orange", "Rot", "Rosa", "Violett", "Hellgrün", "Grün", "Hellblau", "Blau","Braun", "Grau", "Schwarz")
+luck_drop_down.grid(row=3, column=1, padx=5, pady=5)
 
 luck_label_reason = ttk.Label(root, text="Grund:")
-luck_label_reason.grid(row=3, column=4, padx=5, pady=5, sticky=tk.E)
+luck_label_reason.grid(row=3, column=2, padx=5, pady=5, sticky=tk.E)
 
 luck_entry_reason = ttk.Entry(root)
-luck_entry_reason.grid(row=3, column=5, padx=5, pady=5)
+luck_entry_reason.grid(row=3, column=3, padx=5, pady=5)
 
 #closet color
 closet_label = ttk.Label(root, text="Häufigste Farbe im Kleiderschrank:")
@@ -141,7 +131,7 @@ closet_label = ttk.Label(root, text="Lieblingsfarbe:")
 closet_label.grid(row=21, column=0, padx=5, pady=5, sticky=tk.W)
 
 #submit
-submit_button = ttk.Button(root, text="Abschicken", command=form.get_input)
+submit_button = ttk.Button(root, text="Abschicken")
 submit_button.grid(row=22, column=5, padx=5, pady=5, sticky=tk.E)
 
 
