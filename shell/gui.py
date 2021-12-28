@@ -7,13 +7,13 @@ root.geometry("930x800")
 root.title("Auswertungsbogen")
 root.resizable(0, 0)
 
+
 #age
 age_label = ttk.Label(root, text="Alter:")
 age_label.grid(row=0, column=0, padx=5, pady=5, sticky=tk.W)
 
 age_entry = ttk.Entry(root)
 age_entry.grid(row=0, column=1, padx=5, pady=5)
-
 
 #sex
 sex_label = ttk.Label(root, text="Geschlecht:")
@@ -239,7 +239,7 @@ red_word_assoziation_button_love = ttk.Button(root, text="Liebe")
 red_word_assoziation_button_love.grid(row=14, column=1, padx=5, pady=5)
 
 red_word_assoziation_button_love = ttk.Button(root, text="Krieg/Brutalität")
-red_word_assoziation_button_love.grid(row=14, column=5, padx=5, pady=5)
+red_word_assoziation_button_love.grid(row=14, column=4, padx=5, pady=5)
 
 
 #flag association
@@ -334,7 +334,7 @@ rap_color_entry_other.grid(row=20, column=3, padx=5, pady=5)
 
 
 #electro color
-electro_color_label = ttk.Label(root, text="Farb-Assoziation Elekto:")
+electro_color_label = ttk.Label(root, text="Farb-Assoziation Elektro:")
 electro_color_label.grid(row=21, column=0, padx=5, pady=5, sticky=tk.W)
 
 electro_color = StringVar(root)
