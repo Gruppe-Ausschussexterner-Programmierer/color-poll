@@ -141,7 +141,7 @@ closet_label = ttk.Label(root, text="Lieblingsfarbe:")
 closet_label.grid(row=21, column=0, padx=5, pady=5, sticky=tk.W)
 
 #submit
-submit_button = ttk.Button(root, text="Abschicken")
+submit_button = ttk.Button(root, text="Abschicken", command=form.get_input)
 submit_button.grid(row=22, column=5, padx=5, pady=5, sticky=tk.E)
 
 
