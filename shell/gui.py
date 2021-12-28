@@ -1,12 +1,11 @@
 import tkinter as tk
-from tkinter import Label, StringVar, ttk
+from tkinter import StringVar, ttk
 
 #setup root
 root = tk.Tk()
-root.geometry("930x800")
+root.geometry("750x700")
 root.title("Auswertungsbogen")
 root.resizable(0, 0)
-
 
 #age
 age_label = ttk.Label(root, text="Alter:")
@@ -29,7 +28,6 @@ sex_button_female.grid(row=1, column=3, padx=5, pady=5)
 sex_button_male = ttk.Button(root, text="Anderes Geschlecht")
 sex_button_male.grid(row=1, column=5, padx=5, pady=5)
 
-
 #culture
 culture_label = ttk.Label(root, text="Kulturzugehörigkeit: ")
 culture_label.grid(row=2, column=0, padx=5, pady=5, sticky=tk.W)
@@ -50,6 +48,7 @@ luck_label.grid(row=3, column=0, padx=5, pady=5, sticky=tk.W)
 
 luck_color = StringVar(root)
 luck_color.set("Grün")
+
 luck_option_menu = ttk.OptionMenu(root, luck_color, "Grün", "-----", "Weiß", "Gelb", "Orange", "Rot", "Rosa", "Violett", "Hellgrün", "Grün", "Hellblau", "Blau","Braun", "Grau", "Schwarz")
 luck_option_menu.grid(row=3, column=1, padx=5, pady=5)
 
@@ -69,6 +68,7 @@ luck_entry_reason.grid(row=3, column=5, padx=5, pady=5)
 #closet color
 closet_label = ttk.Label(root, text="Häufigste Farbe im Kleiderschrank:")
 closet_label.grid(row=4, column=0, padx=5, pady=5, sticky=tk.W)
+
 
 closet_color = StringVar(root)
 closet_color.set("-----")
@@ -368,6 +368,7 @@ favorite_color_personality_button_no.grid(row=22, column=3, padx=5, pady=5)
 #submit
 submit_button = ttk.Button(root, text="Abschicken")
 submit_button.grid(row=23, column=7, padx=5, pady=5, sticky=tk.E)
+
 
 def run():
     root.mainloop()
