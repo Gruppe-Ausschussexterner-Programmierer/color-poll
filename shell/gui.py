@@ -1,12 +1,5 @@
 import tkinter as tk
-<<<<<<< HEAD:face/gui.py
 from tkinter import Label, StringVar, ttk
-=======
-from tkinter import StringVar, ttk
-
-'''#input to variable
-from core import form'''
->>>>>>> b40df8944e8f9c6a4c4ea17a7659347ad2e8ac4d:shell/gui.py
 
 #setup root
 root = tk.Tk()
