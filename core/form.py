@@ -1,12 +1,11 @@
 #REPRESENT THE INPUT IN PYTHON DATA TYPES BEFORE WRITING TO FILES
 # @FINN TODO: convert input from GUI to an instance of this class
 
-
 class Form:
     def __init__(self):
-        self.age = None
-        self.sex = None
-        self.culture = None
+        self.age: int = None
+        self.sex: str = None
+        self.culture: str = None
         self.luck = {
             "color": None,
             "reason": None
@@ -19,14 +18,14 @@ class Form:
             "learning": None,
             "relaxing": None,
         }
-        self.association_red = None
+        self.association_red: str = None
         self.room = {
             "color": None,
             "conscious decision": None,
             "reason": None,
             "ambience": None,
         }
-        self.meaning_red = None  # war ? brutality
+        self.meaning_red: str = None  # war ? brutality
         self.flag = [[True, None], False] #flag[0][1] represents meaning of flag given by participant
         self.check_ingredients: int = None
         self.music_genre = {
@@ -36,5 +35,5 @@ class Form:
             "rap": None,
             "electro": None
         }
-        self.favourite_color = None
+        self.favourite_color: str = None
         self.fits_personality: bool = None
