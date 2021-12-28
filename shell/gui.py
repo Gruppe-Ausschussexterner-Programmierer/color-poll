@@ -1,9 +1,6 @@
 import tkinter as tk
 from tkinter import StringVar, ttk
 
-'''#input to variable
-from core import form'''
-
 #setup root
 root = tk.Tk()
 root.geometry("750x700")
