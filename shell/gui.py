@@ -3,7 +3,7 @@ from tkinter import StringVar, ttk
 
 #setup root
 root = tk.Tk()
-root.geometry("750x700")
+root.geometry("930x800")
 root.title("Auswertungsbogen")
 root.resizable(0, 0)
 
