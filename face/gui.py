@@ -3,6 +3,10 @@ from tkinter import StringVar, ttk
 
 '''#input to variable
 from core import form'''
+=======
+from tkinter import ttk
+from ..core import form
+>>>>>>> 1012b7b4bbbaa3d61bfb9a435e516b2e1e83a8ed
 
 #setup root
 root = tk.Tk()
