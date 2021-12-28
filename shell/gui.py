@@ -1,13 +1,8 @@
 import tkinter as tk
-<<<<<<< HEAD
 from tkinter import StringVar, ttk
 
 '''#input to variable
 from core import form'''
-=======
-from tkinter import ttk
-from ..core import form
->>>>>>> 1012b7b4bbbaa3d61bfb9a435e516b2e1e83a8ed
 
 #setup root
 root = tk.Tk()
@@ -140,5 +135,5 @@ submit_button = ttk.Button(root, text="Abschicken")
 submit_button.grid(row=22, column=5, padx=5, pady=5, sticky=tk.E)
 
 
-
-root.mainloop()
+def run():
+    root.mainloop()
