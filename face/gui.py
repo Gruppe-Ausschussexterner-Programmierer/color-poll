@@ -1,6 +1,9 @@
 import tkinter as tk
 from tkinter import ttk
 
+#input to variable
+from core import form
+
 #setup root
 root = tk.Tk()
 root.geometry("760x540")
@@ -84,7 +87,7 @@ luck_entry_reason.grid(row=3, column=5, padx=5, pady=5)
 #electro color
 #favorite color
 
-
+#submit button @Emil G. (command=get_input (#form_function))
 
 
 
