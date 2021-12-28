@@ -1,4 +1,5 @@
 import tkinter as tk
+<<<<<<< HEAD
 from tkinter import StringVar, ttk
 
 '''#input to variable
