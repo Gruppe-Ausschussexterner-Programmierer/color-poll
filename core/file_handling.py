@@ -1,4 +1,5 @@
 import csv
+import io
 
 def read_csv(file):
     file_content = []

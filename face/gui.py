@@ -1,8 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
-
-#input to variable
-from core import form
+from ..core import form
 
 #setup root
 root = tk.Tk()
