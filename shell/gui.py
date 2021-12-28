@@ -239,7 +239,7 @@ red_word_assoziation_button_love = ttk.Button(root, text="Liebe")
 red_word_assoziation_button_love.grid(row=14, column=1, padx=5, pady=5)
 
 red_word_assoziation_button_love = ttk.Button(root, text="Krieg/Brutalität")
-red_word_assoziation_button_love.grid(row=14, column=4, padx=5, pady=5)
+red_word_assoziation_button_love.grid(row=14, column=3, padx=5, pady=5)
 
 
 #flag association
