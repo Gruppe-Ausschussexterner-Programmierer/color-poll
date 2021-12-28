@@ -334,7 +334,7 @@ rap_color_entry_other.grid(row=20, column=3, padx=5, pady=5)
 
 
 #electro color
-electro_color_label = ttk.Label(root, text="Farb-Assoziation Elekto:")
+electro_color_label = ttk.Label(root, text="Farb-Assoziation Elektro:")
 electro_color_label.grid(row=21, column=0, padx=5, pady=5, sticky=tk.W)
 
 electro_color = StringVar(root)
