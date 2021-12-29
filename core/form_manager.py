@@ -5,7 +5,7 @@ from core import file
 import os.path
 
 WORKING_DIR = os.path.abspath(os.path.dirname(__file__))
-RESULTS_DIR = os.path.abspath(WORKING_DIR + "/.data/results") 
+RESULTS_DIR = os.path.abspath(WORKING_DIR + "/../.data/results") 
 
 #TODO: test this
 def on_form_submit(form : Form):
@@ -54,3 +54,4 @@ def to_row(form : Form):
     csv_entries.append(form.favourite_color)
     csv_entries.append(form.fits_personality)
 
+    return csv_entries
