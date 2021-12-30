@@ -1,6 +1,9 @@
 import tkinter as tk
 from tkinter import Checkbutton, StringVar, ttk
 from tkinter.constants import ACTIVE, DISABLED
+from core import form_manager
+import poll
+
 
 #variable setup
 entry_age = ""
@@ -397,13 +400,13 @@ favorite_color_personality_Checkbutton_no.grid(row=22, column=3, padx=5, pady=5)
 
 
 #get variables to form.py
-def get_values():
-    None
+def submit_form():
+    form_manager.on_form_submit(poll.form)
     
 
 #submit
 submit_button = ttk.Button(root, text="Abschicken")
-submit_button.grid(row=23, column=7, padx=5, pady=5, sticky=tk.E, command=get_values())
+submit_button.grid(row=23, column=7, padx=5, pady=5, sticky=tk.E, command=submit_form())
 
 
 def run():
