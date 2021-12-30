@@ -1,17 +1,19 @@
 #REPRESENT THE INPUT IN PYTHON DATA TYPES BEFORE WRITING TO FILES
 # @FINN TODO: convert input from GUI to an instance of this class
 
+from shell.gui import entry_age, checkbutton_sex, entry_culture, luck_color, entry_luck_reason, closet_color
+
 class Form:
     def __init__(self):
-        self.age : int = None
-        self.sex : str = None
-        self.culture : str = None
+        self.age : int = entry_age #TODO: convert to int (is str rn)
+        self.sex : int = checkbutton_sex # 0->None, 1->Male, 2->Female, 3->Other
+        self.culture : str = entry_culture
         self.luck = {
-            "color": None,
-            "reason": None
+            "color": luck_color,
+            "reason": entry_luck_reason
         }
         self.color = {
-            "clauset": None,
+            "clauset": closet_color,
             "noble": None,
             "high-quality": None,
             "car": None,
