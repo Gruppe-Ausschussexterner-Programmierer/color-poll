@@ -2,7 +2,6 @@ import tkinter as tk
 from tkinter import Checkbutton, StringVar, ttk
 from tkinter.constants import ACTIVE, DISABLED
 from core import form_manager
-import poll
 
 
 #variable setup
@@ -399,9 +398,42 @@ favorite_color_personality_Checkbutton_no = ttk.Checkbutton(root, onvalue=False,
 favorite_color_personality_Checkbutton_no.grid(row=22, column=3, padx=5, pady=5)
 
 
+def save_values_in(form):
+    form_manager.to_form(form,
+                        entry_age,
+                        checkbutton_sex,
+                        entry_culture,
+                        luck_color.get(),
+                        entry_luck_reason,
+                        closet_color.get(),
+                        noble_color_1.get(),
+                        noble_color_2.get(),
+                        quality_1.get(),
+                        quality_2.get(),
+                        car.get(),
+                        red_entry,
+                        room_color.get(),
+                        checkbutton_room_color_deliberatly_chosen,
+                        entry_room_color_reason,
+                        entry_room_atmosphere,
+                        learning_color.get(),
+                        relaxing_color.get(),
+                        checkbutton_red,
+                        checkbutton_flag,
+                        entry_flag,
+                        sweet_ingredients.get(),
+                        schlager_color.get(),
+                        pop_color.get(),
+                        classic_color.get(),
+                        rap_color.get(),
+                        electro_color.get(),
+                        favorite_color.get(),
+                        checkbutton_favorite_color)
+
 #get variables to form.py
 def submit_form():
-    form_manager.on_form_submit(poll.form)
+    save_values_in(form_manager.form)
+    form_manager.on_form_submit(form_manager.form)
     
 
 #submit
