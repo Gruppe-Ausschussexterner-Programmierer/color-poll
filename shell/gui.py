@@ -8,9 +8,31 @@ entry_culture = ""
 luck_color = ""
 entry_luck_reason = ""
 closet_color = ""
+noble_color_1 = ""
+noble_color_2 = ""
+quality_1 = ""
+quality_2 = ""
+car = ""
+red_entry = ""
+room_color = ""
+checkbutton_room_color_deliberatly_chosen = 0 # 0->None, 1->Yes, 2->No
+entry_room_atmosphere = ""
+learning_color = ""
+relaxing_color = ""
+checkbutton_red = 0 # 0->None, 1->Love, 2->War
+checkbutton_flag = 0 # 0->None, 1->Yes, 2->No
+entry_flag = ""
+sweet_ingredients = ""
+schlager_color = ""
+pop_color = ""
+classic_color = ""
+rap_color = ""
+electro_color = ""
+favorite_color = ""
+checkbutton_favorite_color = 0 # 0->None, 1->Yes, 2->No
 
 
-checkbutton_room_color_deliberatly_chosen = 0 # 0->None, 1->True, 2->False
+
 checkbutton_ = 0
 
 
@@ -105,7 +127,7 @@ noble_optionmenu_1.grid(row=5, column=1, padx=5, pady=5)
 noble_label_other_1 = ttk.Label(root, text="Andere:")
 noble_label_other_1.grid(row=5, column=2, padx=5, pady=5, sticky=tk.E)
 
-noble_entry_other_1 = ttk.Entry(root)
+noble_entry_other_1 = ttk.Entry(root, textvariable=noble_color_1)
 noble_entry_other_1.grid(row=5, column=3, padx=5, pady=5)
 
 noble_color_2 = StringVar(root)
@@ -116,7 +138,7 @@ noble_optionmenu_2.grid(row=5, column=5, padx=5, pady=5)
 noble_label_other_2 = ttk.Label(root, text="Andere:")
 noble_label_other_2.grid(row=5, column=6, padx=5, pady=5, sticky=tk.E)
 
-noble_entry_other_2 = ttk.Entry(root)
+noble_entry_other_2 = ttk.Entry(root, textvariable=noble_color_2)
 noble_entry_other_2.grid(row=5, column=7, padx=5, pady=5)
 
 
@@ -132,7 +154,7 @@ quality_optionmenu_1.grid(row=6, column=1, padx=5, pady=5)
 quality_label_other_1 = ttk.Label(root, text="Andere:")
 quality_label_other_1.grid(row=6, column=2, padx=5, pady=5, sticky=tk.E)
 
-quality_entry_other_1 = ttk.Entry(root)
+quality_entry_other_1 = ttk.Entry(root, textvariable=quality_1)
 quality_entry_other_1.grid(row=6, column=3, padx=5, pady=5)
 
 quality_2 = StringVar(root)
@@ -143,7 +165,7 @@ quality_optionmenu_2.grid(row=6, column=5, padx=5, pady=5)
 quality_label_other_2 = ttk.Label(root, text="Andere:")
 quality_label_other_2.grid(row=6, column=6, padx=5, pady=5, sticky=tk.E)
 
-quality_entry_other_2 = ttk.Entry(root)
+quality_entry_other_2 = ttk.Entry(root, textvariable=quality_2)
 quality_entry_other_2.grid(row=6, column=7, padx=5, pady=5)
 
 
@@ -159,7 +181,7 @@ car_optionmenu.grid(row=7, column=1, padx=5, pady=5)
 car_label_other = ttk.Label(root, text="Andere:")
 car_label_other.grid(row=7, column=2, padx=5, pady=5, sticky=tk.E)
 
-car_entry_other = ttk.Entry(root)
+car_entry_other = ttk.Entry(root, textvariable=car)
 car_entry_other.grid(row=7, column=3, padx=5, pady=5)
 
 
@@ -167,8 +189,8 @@ car_entry_other.grid(row=7, column=3, padx=5, pady=5)
 red_label = ttk.Label(root, text="Assoziation Rot:")
 red_label.grid(row=8, column=0, padx=5, pady=5, sticky=tk.W)
 
-red_entry = ttk.Entry(root)
-red_entry.grid(row=8, column=1, padx=5, pady=5)
+red_association_entry = ttk.Entry(root, textvariable=red_entry)
+red_association_entry.grid(row=8, column=1, padx=5, pady=5)
 
 
 #room color
@@ -183,14 +205,14 @@ room_optionmenu.grid(row=9, column=1, padx=5, pady=5)
 room_label_other = ttk.Label(root, text="Andere:")
 room_label_other.grid(row=9, column=2, padx=5, pady=5, sticky=tk.E)
 
-room_entry_other = ttk.Entry(root)
+room_entry_other = ttk.Entry(root, textvariable=room_color)
 room_entry_other.grid(row=9, column=3, padx=5, pady=5)
 
 #room color deliberatly chosen
 room_color_deliberatly_chosen_label = ttk.Label(root, text="Zimmer Farbe bewusst gewählt:")
 room_color_deliberatly_chosen_label.grid(row=10, column=0, padx=5, pady=5, sticky=tk.W)
 
-room_color_deliberatly_chosen_checkbutton_yes = ttk.Checkbutton(root, offvalue=False, onvalue=True, variable=checkbutton_, text="Ja")
+room_color_deliberatly_chosen_checkbutton_yes = ttk.Checkbutton(root, onvalue=1, variable=checkbutton_room_color_deliberatly_chosen, text="Ja")
 room_color_deliberatly_chosen_checkbutton_yes.grid(row=10, column=1, padx=5, pady=5)
 
 room_color_deliberatly_chosen_label_reason = ttk.Label(root, text="Grund:")
@@ -199,7 +221,7 @@ room_color_deliberatly_chosen_label_reason.grid(row=10, column=2, padx=5, pady=5
 room_color_deliberatly_chosen_entry_reason = ttk.Entry(root)
 room_color_deliberatly_chosen_entry_reason.grid(row=10, column=3, padx=5, pady=5)
 
-room_color_deliberatly_chosen_checkbutton_no = ttk.Checkbutton(root, offvalue=False, onvalue=True, variable=checkbutton_, text="Nein")
+room_color_deliberatly_chosen_checkbutton_no = ttk.Checkbutton(root, onvalue=2, variable=checkbutton_room_color_deliberatly_chosen, text="Nein")
 room_color_deliberatly_chosen_checkbutton_no.grid(row=10, column=5, padx=5, pady=5)
 
 
@@ -207,7 +229,7 @@ room_color_deliberatly_chosen_checkbutton_no.grid(row=10, column=5, padx=5, pady
 room_atmosphere_label = ttk.Label(root, text="Zimmer Atmosphäre:")
 room_atmosphere_label.grid(row=11, column=0, padx=5, pady=5, sticky=tk.W)
 
-room_atmosphere_entry = ttk.Entry(root)
+room_atmosphere_entry = ttk.Entry(root, textvariable=entry_room_atmosphere)
 room_atmosphere_entry.grid(row=11, column=1, padx=5, pady=5)
 
 #learning color
@@ -222,7 +244,7 @@ learning_color_optionmenu.grid(row=12, column=1, padx=5, pady=5)
 learning_color_label_other = ttk.Label(root, text="Andere:")
 learning_color_label_other.grid(row=12, column=2, padx=5, pady=5, sticky=tk.E)
 
-learning_color_entry_other = ttk.Entry(root)
+learning_color_entry_other = ttk.Entry(root, textvariable=learning_color)
 learning_color_entry_other.grid(row=12, column=3, padx=5, pady=5)
 
 
@@ -238,7 +260,7 @@ relaxing_color_optionmenu.grid(row=13, column=1, padx=5, pady=5)
 relaxing_color_label_other = ttk.Label(root, text="Andere:")
 relaxing_color_label_other.grid(row=13, column=2, padx=5, pady=5, sticky=tk.E)
 
-relaxing_color_entry_other = ttk.Entry(root)
+relaxing_color_entry_other = ttk.Entry(root, textvariable=relaxing_color)
 relaxing_color_entry_other.grid(row=13, column=3, padx=5, pady=5)
 
 
@@ -246,27 +268,27 @@ relaxing_color_entry_other.grid(row=13, column=3, padx=5, pady=5)
 red_word_assoziation_label = ttk.Label(root, text="Wort-Assoziation Rot:" )
 red_word_assoziation_label.grid(row=14, column=0, padx=5, pady=5, sticky=tk.W)
 
-red_word_assoziation_checkbutton_love = ttk.Checkbutton(root, offvalue=False, onvalue=True, variable=checkbutton_, text="Liebe")
+red_word_assoziation_checkbutton_love = ttk.Checkbutton(root, onvalue=1, variable=checkbutton_red, text="Liebe")
 red_word_assoziation_checkbutton_love.grid(row=14, column=1, padx=5, pady=5)
 
-red_word_assoziation_checkbutton_love = ttk.Checkbutton(root, offvalue=False, onvalue=True, variable=checkbutton_, text="Krieg/Brutalität")
-red_word_assoziation_checkbutton_love.grid(row=14, column=3, padx=5, pady=5)
+red_word_assoziation_checkbutton_war = ttk.Checkbutton(root, onvalue=2, variable=checkbutton_red, text="Krieg/Brutalität")
+red_word_assoziation_checkbutton_war.grid(row=14, column=3, padx=5, pady=5)
 
 
 #flag association
 flag_assoziation_label = ttk.Label(root, text="Assoziation Flagge:")
 flag_assoziation_label.grid(row=15, column=0, padx=5, pady=5, sticky=tk.W)
 
-flag_assoziation_checkbutton_yes = ttk.Checkbutton(root, offvalue=False, onvalue=True, variable=checkbutton_, text="Ja")
+flag_assoziation_checkbutton_yes = ttk.Checkbutton(root, onvalue=1, variable=checkbutton_flag, text="Ja")
 flag_assoziation_checkbutton_yes.grid(row=15, column=1, padx=5, pady=5)
 
 flag_assoziation_label_reason = ttk.Label(root, text="Bedeutung:")
 flag_assoziation_label_reason.grid(row=15, column=2, padx=5, pady=5, sticky=tk.E)
 
-flag_assoziation_entry_reason = ttk.Entry(root)
+flag_assoziation_entry_reason = ttk.Entry(root, textvariable=entry_flag)
 flag_assoziation_entry_reason.grid(row=15, column=3, padx=5, pady=5)
 
-flag_assoziation_checkbutton_no = ttk.Checkbutton(root, offvalue=False, onvalue=True, variable=checkbutton_, text="Nein")
+flag_assoziation_checkbutton_no = ttk.Checkbutton(root, onvalue=2, variable=checkbutton_flag, text="Nein")
 flag_assoziation_checkbutton_no.grid(row=15, column=5, padx=5, pady=5)
 
 
@@ -274,7 +296,7 @@ flag_assoziation_checkbutton_no.grid(row=15, column=5, padx=5, pady=5)
 sweet_ingredients_label = ttk.Label(root, text="Interesse Süßigkeiten-Zutaten:")
 sweet_ingredients_label.grid(row=16, column=0, padx=5, pady=5, sticky=tk.W)
 
-sweet_ingredients = int(root)
+sweet_ingredients = StringVar(root)
 sweet_ingredients.set("-----")
 sweet_ingredients_optionmenu = ttk.OptionMenu(root, sweet_ingredients, "-----", "-----", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10")
 sweet_ingredients_optionmenu.grid(row=16, column=1, padx=5, pady=5)
@@ -285,14 +307,14 @@ schlager_color_label = ttk.Label(root, text="Farb-Assoziation Schlager:")
 schlager_color_label.grid(row=17, column=0, padx=5, pady=5, sticky=tk.W)
 
 schlager_color = StringVar(root)
-schlager_color.set("-----")
+schlager_color.set()
 schlager_color_optionmenu = ttk.OptionMenu(root, schlager_color, "-----", "-----", "Weiß", "Gelb", "Orange", "Rot", "Rosa", "Violett", "Hellgrün", "Grün", "Hellblau", "Blau","Braun", "Grau", "Schwarz")
 schlager_color_optionmenu.grid(row=17, column=1, padx=5, pady=5)
 
 schlager_color_label_other = ttk.Label(root, text="Andere:")
 schlager_color_label_other.grid(row=17, column=2, padx=5, pady=5, sticky=tk.E)
 
-schlager_color_entry_other = ttk.Entry(root)
+schlager_color_entry_other = ttk.Entry(root, textvariable=schlager_color)
 schlager_color_entry_other.grid(row=17, column=3, padx=5, pady=5)
 
 
@@ -308,7 +330,7 @@ pop_color_optionmenu.grid(row=18, column=1, padx=5, pady=5)
 pop_color_label_other = ttk.Label(root, text="Andere:")
 pop_color_label_other.grid(row=18, column=2, padx=5, pady=5, sticky=tk.E)
 
-pop_color_entry_other = ttk.Entry(root)
+pop_color_entry_other = ttk.Entry(root, textvariable=pop_color)
 pop_color_entry_other.grid(row=18, column=3, padx=5, pady=5)
 
 
@@ -324,7 +346,7 @@ classic_color_optionmenu.grid(row=19, column=1, padx=5, pady=5)
 classic_color_label_other = ttk.Label(root, text="Andere:")
 classic_color_label_other.grid(row=19, column=2, padx=5, pady=5, sticky=tk.E)
 
-classic_color_entry_other = ttk.Entry(root)
+classic_color_entry_other = ttk.Entry(root, textvariable=classic_color)
 classic_color_entry_other.grid(row=19, column=3, padx=5, pady=5)
 
 
@@ -340,7 +362,7 @@ rap_color_optionmenu.grid(row=20, column=1, padx=5, pady=5)
 rap_color_label_other = ttk.Label(root, text="Andere:")
 rap_color_label_other.grid(row=20, column=2, padx=5, pady=5, sticky=tk.E)
 
-rap_color_entry_other = ttk.Entry(root)
+rap_color_entry_other = ttk.Entry(root, textvariable=rap_color)
 rap_color_entry_other.grid(row=20, column=3, padx=5, pady=5)
 
 
@@ -356,7 +378,7 @@ electro_color_optionmenu.grid(row=21, column=1, padx=5, pady=5)
 electro_color_label_other = ttk.Label(root, text="Andere:")
 electro_color_label_other.grid(row=21, column=2, padx=5, pady=5, sticky=tk.E)
 
-electro_color_entry_other = ttk.Entry(root)
+electro_color_entry_other = ttk.Entry(root, textvariable=electro_color)
 electro_color_entry_other.grid(row=21, column=3, padx=5, pady=5)
 
 
@@ -369,19 +391,17 @@ favorite_color.set("-----")
 favorite_color_optionmenu = ttk.OptionMenu(root, electro_color, "-----", "-----", "Rot", "Orange", "Gelb", "Grün", "Blau", "Hellblau", "Violett", "Weiß", "Rosa", "Grau","Schwarz", "Braun")
 favorite_color_optionmenu.grid(row=22, column=1, padx=5, pady=5)
 
-favorite_color_personality_Checkbutton_yes = ttk.Checkbutton(root, offvalue=False, onvalue=True, variable=checkbutton_, text="Passt")
+favorite_color_personality_Checkbutton_yes = ttk.Checkbutton(root, onvalue=1, variable=checkbutton_favorite_color, text="Passt")
 favorite_color_personality_Checkbutton_yes.grid(row=22, column=2, padx=5, pady=5)
 
-favorite_color_personality_Checkbutton_no = ttk.Checkbutton(root, offvalue=False, onvalue=True, variable=checkbutton_, text="Passt nicht")
+favorite_color_personality_Checkbutton_no = ttk.Checkbutton(root, onvalue=2, variable=checkbutton_favorite_color, text="Passt nicht")
 favorite_color_personality_Checkbutton_no.grid(row=22, column=3, padx=5, pady=5)
 
 
-#get variables
+#get variables to form.py
 def get_values():
-    entry_culture = ""
-    checkbutton_room_color_deliberatly_chosen = 0 # 0->None, 1->True, 2->False
-    print(checkbutton_sex)
-
+    None
+    
 
 #submit
 submit_button = ttk.Button(root, text="Abschicken")
