@@ -269,10 +269,10 @@ relaxing_color_entry_other.grid(row=13, column=3, padx=5, pady=5)
 red_word_assoziation_label = ttk.Label(root, text="Wort-Assoziation Rot:" )
 red_word_assoziation_label.grid(row=14, column=0, padx=5, pady=5, sticky=tk.W)
 
-red_word_assoziation_checkbutton_love = ttk.Checkbutton(root, onvalue=1, variable=True, text="Liebe")
+red_word_assoziation_checkbutton_love = ttk.Checkbutton(root, onvalue=True, variable=checkbutton_red, text="Liebe")
 red_word_assoziation_checkbutton_love.grid(row=14, column=1, padx=5, pady=5)
 
-red_word_assoziation_checkbutton_war = ttk.Checkbutton(root, onvalue=2, variable=False, text="Krieg/Brutalität")
+red_word_assoziation_checkbutton_war = ttk.Checkbutton(root, onvalue=False, variable=checkbutton_red, text="Krieg/Brutalität")
 red_word_assoziation_checkbutton_war.grid(row=14, column=3, padx=5, pady=5)
 
 
