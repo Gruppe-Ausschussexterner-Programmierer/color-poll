@@ -6,7 +6,7 @@ from shell.gui import *
 class Form:
     def __init__(self):
         self.age: int = None  # @SCHLÄGER TODO: convert to int (is str rn)
-        self.sex: str = None  # 0->None, 1->Male, 2->Female, 3->Other
+        self.sex: str = None
         self.culture: str = None
         self.luck = {
             "color": None,
@@ -25,12 +25,12 @@ class Form:
         self.association_red: str = None
         self.room = {
             "color": None,
-            "conscious decision": None,  # 0->None, 1->Yes, 2->No
+            "conscious decision": None,
             "reason": None,
             "ambience": None,
         }
-        self.meaning_red: int = None  # 0->None, 1->Love, 2->War
-        self.knows_flag : bool = None # 0->None, 1->Yes, 2->No
+        self.meaning_red: bool = None
+        self.knows_flag : bool = None
         self.flag_meaning : str = None
         self.check_ingredients : int = None # @SCHLÄGER TODO: convert to int (is str rn)
         self.music_genre = {
@@ -41,4 +41,4 @@ class Form:
             "electro": None
         }
         self.favourite_color : str = None
-        self.fits_personality: bool = None  # 0->None, 1->Yes, 2->No
+        self.fits_personality: bool = None
