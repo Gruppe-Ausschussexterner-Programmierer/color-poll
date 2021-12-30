@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import Checkbutton, StringVar, ttk
+from tkinter.constants import ACTIVE, DISABLED
 
 #variable setup
 entry_age = ""
@@ -15,12 +16,13 @@ quality_2 = ""
 car = ""
 red_entry = ""
 room_color = ""
-checkbutton_room_color_deliberatly_chosen = 0 # 0->None, 1->Yes, 2->No
+checkbutton_room_color_deliberatly_chosen = 4 # 0->None, 1->Yes, 2->No
+entry_room_color_reason = ""
 entry_room_atmosphere = ""
 learning_color = ""
 relaxing_color = ""
-checkbutton_red = 0 # 0->None, 1->Love, 2->War
-checkbutton_flag = 0 # 0->None, 1->Yes, 2->No
+checkbutton_red = 7 # 0->None, 1->Love, 2->War
+checkbutton_flag = 10 # 0->None, 1->Yes, 2->No
 entry_flag = ""
 sweet_ingredients = ""
 schlager_color = ""
@@ -29,11 +31,7 @@ classic_color = ""
 rap_color = ""
 electro_color = ""
 favorite_color = ""
-checkbutton_favorite_color = 0 # 0->None, 1->Yes, 2->No
-
-
-
-checkbutton_ = 0
+checkbutton_favorite_color = 13 # 0->None, 1->Yes, 2->No
 
 
 #setup root
@@ -67,7 +65,7 @@ sex_checkbutton_other.grid(row=1, column=5, padx=5, pady=5)
 culture_label = ttk.Label(root, text="Kulturzugehörigkeit: ")
 culture_label.grid(row=2, column=0, padx=5, pady=5, sticky=tk.W)
 
-culture_checkbutton_german = ttk.Checkbutton(root, offvalue=False, onvalue="Deutsch", variable=entry_culture, text="Deutsch")
+culture_checkbutton_german = ttk.Checkbutton(root, onvalue="Deutsch", variable=entry_culture, text="Deutsch")
 culture_checkbutton_german.grid(row=2, column=1, padx=5, pady=5)
 
 culture_label_other = ttk.Label(root, text="Andere:")
@@ -218,7 +216,7 @@ room_color_deliberatly_chosen_checkbutton_yes.grid(row=10, column=1, padx=5, pad
 room_color_deliberatly_chosen_label_reason = ttk.Label(root, text="Grund:")
 room_color_deliberatly_chosen_label_reason.grid(row=10, column=2, padx=5, pady=5, sticky=tk.E)
 
-room_color_deliberatly_chosen_entry_reason = ttk.Entry(root)
+room_color_deliberatly_chosen_entry_reason = ttk.Entry(root, textvariable=entry_room_color_reason)
 room_color_deliberatly_chosen_entry_reason.grid(row=10, column=3, padx=5, pady=5)
 
 room_color_deliberatly_chosen_checkbutton_no = ttk.Checkbutton(root, onvalue=2, variable=checkbutton_room_color_deliberatly_chosen, text="Nein")
@@ -307,7 +305,7 @@ schlager_color_label = ttk.Label(root, text="Farb-Assoziation Schlager:")
 schlager_color_label.grid(row=17, column=0, padx=5, pady=5, sticky=tk.W)
 
 schlager_color = StringVar(root)
-schlager_color.set()
+schlager_color.set("-----")
 schlager_color_optionmenu = ttk.OptionMenu(root, schlager_color, "-----", "-----", "Weiß", "Gelb", "Orange", "Rot", "Rosa", "Violett", "Hellgrün", "Grün", "Hellblau", "Blau","Braun", "Grau", "Schwarz")
 schlager_color_optionmenu.grid(row=17, column=1, padx=5, pady=5)
 
@@ -388,7 +386,7 @@ favourite_color_label.grid(row=22, column=0, padx=5, pady=5, sticky=tk.W)
 
 favorite_color = StringVar(root)
 favorite_color.set("-----")
-favorite_color_optionmenu = ttk.OptionMenu(root, electro_color, "-----", "-----", "Rot", "Orange", "Gelb", "Grün", "Blau", "Hellblau", "Violett", "Weiß", "Rosa", "Grau","Schwarz", "Braun")
+favorite_color_optionmenu = ttk.OptionMenu(root, favorite_color, "-----", "-----", "Rot", "Orange", "Gelb", "Grün", "Blau", "Hellblau", "Violett", "Weiß", "Rosa", "Grau","Schwarz", "Braun")
 favorite_color_optionmenu.grid(row=22, column=1, padx=5, pady=5)
 
 favorite_color_personality_Checkbutton_yes = ttk.Checkbutton(root, onvalue=1, variable=checkbutton_favorite_color, text="Passt")
