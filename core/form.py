@@ -15,7 +15,7 @@ class Form:
         self.color = {
             "clauset": closet_color,
             "noble": noble_color_1, # @SCHLÄGER TODO: add a second noble color
-            "high-quality": quality_2, # @SCHLÄGER TODO: add a second high-quality color
+            "high-quality": quality_1, # @SCHLÄGER TODO: add a second high-quality color
             "car": car,
             "learning": learning_color,
             "relaxing": relaxing_color,

@@ -21,8 +21,8 @@ entry_room_color_reason = ""
 entry_room_atmosphere = ""
 learning_color = ""
 relaxing_color = ""
-checkbutton_red = 7 # 0->None, 1->Love, 2->War
-checkbutton_flag = 10 # 0->None, 1->Yes, 2->No
+checkbutton_red = 0 # 0->None, 1->Love, 2->War
+checkbutton_flag = 0 # 0->None, 1->Yes, 2->No
 entry_flag = ""
 sweet_ingredients = ""
 schlager_color = ""
@@ -31,7 +31,7 @@ classic_color = ""
 rap_color = ""
 electro_color = ""
 favorite_color = ""
-checkbutton_favorite_color = 13 # 0->None, 1->Yes, 2->No
+checkbutton_favorite_color = 0 # 0->None, 1->Yes, 2->No
 
 
 #setup root
