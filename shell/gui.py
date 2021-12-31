@@ -72,7 +72,7 @@ entry_culture = tk.StringVar()
 culture_checkbutton_german = ttk.Checkbutton(root, offvalue="", onvalue="Deutsch", variable=entry_culture, text="Deutsch")
 culture_checkbutton_german.grid(row=2, column=1, padx=5, pady=5)
 
-culture_label_other = ttk.Label(root, text="Andere:")
+culture_label_other = ttk.Label(root, text="Eingabe:")
 culture_label_other.grid(row=2, column=2, padx=5, pady=5, sticky=tk.E)
 
 culture_entry_other = ttk.Entry(root, textvariable=entry_culture)
@@ -88,7 +88,7 @@ luck_color.set("Grün")
 luck_optionmenu = ttk.OptionMenu(root, luck_color, "Grün", "-----", "Weiß", "Gelb", "Orange", "Rot", "Rosa", "Violett", "Hellgrün", "Grün", "Hellblau", "Blau","Braun", "Grau", "Schwarz")
 luck_optionmenu.grid(row=3, column=1, padx=5, pady=5)
 
-luck_label_other = ttk.Label(root, text="Andere:")
+luck_label_other = ttk.Label(root, text="Eingabe:")
 luck_label_other.grid(row=3, column=2, padx=5, pady=5, sticky=tk.E)
 
 luck_entry_other = ttk.Entry(root, textvariable=luck_color)
@@ -110,7 +110,7 @@ closet_color.set("-----")
 closet_optionmenu = ttk.OptionMenu(root, closet_color, "-----", "-----", "Weiß", "Gelb", "Orange", "Rot", "Rosa", "Violett", "Hellgrün", "Grün", "Hellblau", "Blau","Braun", "Grau", "Schwarz")
 closet_optionmenu.grid(row=4, column=1, padx=5, pady=5)
 
-closet_label_other = ttk.Label(root, text="Andere:")
+closet_label_other = ttk.Label(root, text="Eingabe:")
 closet_label_other.grid(row=4, column=2, padx=5, pady=5, sticky=tk.E)
 
 closet_entry_other = ttk.Entry(root, textvariable=closet_color)
@@ -126,7 +126,7 @@ noble_color_1.set("-----")
 noble_optionmenu_1 = ttk.OptionMenu(root, noble_color_1, "-----", "-----", "Weiß", "Gelb", "Orange", "Rot", "Rosa", "Violett", "Hellgrün", "Grün", "Hellblau", "Blau","Braun", "Grau", "Schwarz")
 noble_optionmenu_1.grid(row=5, column=1, padx=5, pady=5)
 
-noble_label_other_1 = ttk.Label(root, text="Andere:")
+noble_label_other_1 = ttk.Label(root, text="Eingabe:")
 noble_label_other_1.grid(row=5, column=2, padx=5, pady=5, sticky=tk.E)
 
 noble_entry_other_1 = ttk.Entry(root, textvariable=noble_color_1)
@@ -137,7 +137,7 @@ noble_color_2.set("-----")
 noble_optionmenu_2 = ttk.OptionMenu(root, noble_color_2, "-----", "-----", "Weiß", "Gelb", "Orange", "Rot", "Rosa", "Violett", "Hellgrün", "Grün", "Hellblau", "Blau","Braun", "Grau", "Schwarz")
 noble_optionmenu_2.grid(row=5, column=5, padx=5, pady=5)
 
-noble_label_other_2 = ttk.Label(root, text="Andere:")
+noble_label_other_2 = ttk.Label(root, text="Eingabe:")
 noble_label_other_2.grid(row=5, column=6, padx=5, pady=5, sticky=tk.E)
 
 noble_entry_other_2 = ttk.Entry(root, textvariable=noble_color_2)
@@ -153,7 +153,7 @@ quality_1.set("-----")
 quality_optionmenu_1 = ttk.OptionMenu(root, quality_1, "-----", "-----", "Weiß", "Gelb", "Orange", "Rot", "Rosa", "Violett", "Hellgrün", "Grün", "Hellblau", "Blau","Braun", "Grau", "Schwarz")
 quality_optionmenu_1.grid(row=6, column=1, padx=5, pady=5)
 
-quality_label_other_1 = ttk.Label(root, text="Andere:")
+quality_label_other_1 = ttk.Label(root, text="Eingabe:")
 quality_label_other_1.grid(row=6, column=2, padx=5, pady=5, sticky=tk.E)
 
 quality_entry_other_1 = ttk.Entry(root, textvariable=quality_1)
@@ -164,7 +164,7 @@ quality_2.set("-----")
 quality_optionmenu_2 = ttk.OptionMenu(root, quality_2, "-----", "-----", "Weiß", "Gelb", "Orange", "Rot", "Rosa", "Violett", "Hellgrün", "Grün", "Hellblau", "Blau","Braun", "Grau", "Schwarz")
 quality_optionmenu_2.grid(row=6, column=5, padx=5, pady=5)
 
-quality_label_other_2 = ttk.Label(root, text="Andere:")
+quality_label_other_2 = ttk.Label(root, text="Eingabe:")
 quality_label_other_2.grid(row=6, column=6, padx=5, pady=5, sticky=tk.E)
 
 quality_entry_other_2 = ttk.Entry(root, textvariable=quality_2)
@@ -180,7 +180,7 @@ car.set("-----")
 car_optionmenu = ttk.OptionMenu(root, car, "-----", "-----", "Weiß", "Gelb", "Orange", "Rot", "Rosa", "Violett", "Hellgrün", "Grün", "Hellblau", "Blau","Braun", "Grau", "Schwarz")
 car_optionmenu.grid(row=7, column=1, padx=5, pady=5)
 
-car_label_other = ttk.Label(root, text="Andere:")
+car_label_other = ttk.Label(root, text="Eingabe:")
 car_label_other.grid(row=7, column=2, padx=5, pady=5, sticky=tk.E)
 
 car_entry_other = ttk.Entry(root, textvariable=car)
@@ -204,7 +204,7 @@ room_color.set("Weiß")
 room_optionmenu = ttk.OptionMenu(root, room_color, "Weiß", "-----", "Weiß", "Gelb", "Orange", "Rot", "Rosa", "Violett", "Hellgrün", "Grün", "Hellblau", "Blau","Braun", "Grau", "Schwarz")
 room_optionmenu.grid(row=9, column=1, padx=5, pady=5)
 
-room_label_other = ttk.Label(root, text="Andere:")
+room_label_other = ttk.Label(root, text="Eingabe:")
 room_label_other.grid(row=9, column=2, padx=5, pady=5, sticky=tk.E)
 
 room_entry_other = ttk.Entry(root, textvariable=room_color)
@@ -244,7 +244,7 @@ learning_color.set("-----")
 learning_color_optionmenu = ttk.OptionMenu(root, learning_color, "-----", "-----", "Weiß", "Gelb", "Orange", "Rot", "Rosa", "Violett", "Hellgrün", "Grün", "Hellblau", "Blau","Braun", "Grau", "Schwarz")
 learning_color_optionmenu.grid(row=12, column=1, padx=5, pady=5)
 
-learning_color_label_other = ttk.Label(root, text="Andere:")
+learning_color_label_other = ttk.Label(root, text="Eingabe:")
 learning_color_label_other.grid(row=12, column=2, padx=5, pady=5, sticky=tk.E)
 
 learning_color_entry_other = ttk.Entry(root, textvariable=learning_color)
@@ -260,7 +260,7 @@ relaxing_color.set("-----")
 relaxing_color_optionmenu = ttk.OptionMenu(root, relaxing_color, "-----", "-----", "Weiß", "Gelb", "Orange", "Rot", "Rosa", "Violett", "Hellgrün", "Grün", "Hellblau", "Blau","Braun", "Grau", "Schwarz")
 relaxing_color_optionmenu.grid(row=13, column=1, padx=5, pady=5)
 
-relaxing_color_label_other = ttk.Label(root, text="Andere:")
+relaxing_color_label_other = ttk.Label(root, text="Eingabe:")
 relaxing_color_label_other.grid(row=13, column=2, padx=5, pady=5, sticky=tk.E)
 
 relaxing_color_entry_other = ttk.Entry(root, textvariable=relaxing_color)
@@ -316,7 +316,7 @@ schlager_color.set("-----")
 schlager_color_optionmenu = ttk.OptionMenu(root, schlager_color, "-----", "-----", "Weiß", "Gelb", "Orange", "Rot", "Rosa", "Violett", "Hellgrün", "Grün", "Hellblau", "Blau","Braun", "Grau", "Schwarz")
 schlager_color_optionmenu.grid(row=17, column=1, padx=5, pady=5)
 
-schlager_color_label_other = ttk.Label(root, text="Andere:")
+schlager_color_label_other = ttk.Label(root, text="Eingabe:")
 schlager_color_label_other.grid(row=17, column=2, padx=5, pady=5, sticky=tk.E)
 
 schlager_color_entry_other = ttk.Entry(root, textvariable=schlager_color)
@@ -332,7 +332,7 @@ pop_color.set("-----")
 pop_color_optionmenu = ttk.OptionMenu(root, pop_color, "-----", "-----", "Weiß", "Gelb", "Orange", "Rot", "Rosa", "Violett", "Hellgrün", "Grün", "Hellblau", "Blau","Braun", "Grau", "Schwarz")
 pop_color_optionmenu.grid(row=18, column=1, padx=5, pady=5)
 
-pop_color_label_other = ttk.Label(root, text="Andere:")
+pop_color_label_other = ttk.Label(root, text="Eingabe:")
 pop_color_label_other.grid(row=18, column=2, padx=5, pady=5, sticky=tk.E)
 
 pop_color_entry_other = ttk.Entry(root, textvariable=pop_color)
@@ -348,7 +348,7 @@ classic_color.set("-----")
 classic_color_optionmenu = ttk.OptionMenu(root, classic_color, "-----", "-----", "Weiß", "Gelb", "Orange", "Rot", "Rosa", "Violett", "Hellgrün", "Grün", "Hellblau", "Blau","Braun", "Grau", "Schwarz")
 classic_color_optionmenu.grid(row=19, column=1, padx=5, pady=5)
 
-classic_color_label_other = ttk.Label(root, text="Andere:")
+classic_color_label_other = ttk.Label(root, text="Eingabe:")
 classic_color_label_other.grid(row=19, column=2, padx=5, pady=5, sticky=tk.E)
 
 classic_color_entry_other = ttk.Entry(root, textvariable=classic_color)
@@ -364,7 +364,7 @@ rap_color.set("-----")
 rap_color_optionmenu = ttk.OptionMenu(root, rap_color, "-----", "-----", "Weiß", "Gelb", "Orange", "Rot", "Rosa", "Violett", "Hellgrün", "Grün", "Hellblau", "Blau","Braun", "Grau", "Schwarz")
 rap_color_optionmenu.grid(row=20, column=1, padx=5, pady=5)
 
-rap_color_label_other = ttk.Label(root, text="Andere:")
+rap_color_label_other = ttk.Label(root, text="Eingabe:")
 rap_color_label_other.grid(row=20, column=2, padx=5, pady=5, sticky=tk.E)
 
 rap_color_entry_other = ttk.Entry(root, textvariable=rap_color)
@@ -380,7 +380,7 @@ electro_color.set("-----")
 electro_color_optionmenu = ttk.OptionMenu(root, electro_color, "-----", "-----", "Weiß", "Gelb", "Orange", "Rot", "Rosa", "Violett", "Hellgrün", "Grün", "Hellblau", "Blau","Braun", "Grau", "Schwarz")
 electro_color_optionmenu.grid(row=21, column=1, padx=5, pady=5)
 
-electro_color_label_other = ttk.Label(root, text="Andere:")
+electro_color_label_other = ttk.Label(root, text="Eingabe:")
 electro_color_label_other.grid(row=21, column=2, padx=5, pady=5, sticky=tk.E)
 
 electro_color_entry_other = ttk.Entry(root, textvariable=electro_color)
