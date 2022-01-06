@@ -3,29 +3,36 @@ from tkinter import Checkbutton, StringVar, ttk
 from tkinter.constants import ACTIVE, DISABLED, NORMAL
 from core import form_manager
 
+#setup root
+root = tk.Tk()
+root.geometry("930x790")
+root.title("Auswertungsbogen")
+root.resizable(0, 0)
+
 
 #variable setup
-entry_age = None
+entry_age = tk.StringVar(root)
 checkbutton_sex = 0 # 0->None, 1->Male, 2->Female, 3->Other
-entry_culture = None
+entry_culture = tk.StringVar(root)
 luck_color = None
-entry_luck_reason = None
+entry_luck_reason = tk.StringVar(root)
 closet_color = None
 noble_color_1 = None
 noble_color_2 = None
 quality_1 = None
 quality_2 = None
 car = None
-red_entry = None
+red_entry = tk.StringVar(root)
 room_color = None
+#TODO: convert numbers to proper values in form_manager.to_form()
 checkbutton_room_color_deliberatly_chosen = 4 # 4->None, 5->Yes, 6->No
-entry_room_color_reason = None
-entry_room_atmosphere = None
+entry_room_color_reason = tk.StringVar(root)
+entry_room_atmosphere = tk.StringVar(root)
 learning_color = None
 relaxing_color = None
 checkbutton_red = 7 # 7->None, 8->Love, 9->War
 checkbutton_flag = 10 # 10->None, 11->Yes, 12->No
-entry_flag = None
+entry_flag = tk.StringVar(root)
 sweet_ingredients = None
 schlager_color = None
 pop_color = None
@@ -34,14 +41,6 @@ rap_color = None
 electro_color = None
 favorite_color = None
 checkbutton_favorite_color = 13 # 13->None, 14->Matches, 15->Does not match
-
-
-#setup root
-root = tk.Tk()
-root.geometry("930x790")
-root.title("Auswertungsbogen")
-root.resizable(0, 0)
-
 
 #age
 age_label = ttk.Label(root, text="Alter:")
@@ -405,28 +404,29 @@ favorite_color_personality_Checkbutton_no.grid(row=22, column=3, padx=5, pady=5)
 
 
 def save_values_in(form):
+    global entry_age
     form_manager.to_form(form,
-                        entry_age,
-                        checkbutton_sex,
-                        entry_culture,
+                        entry_age.get(),
+                        checkbutton_sex.get(),
+                        entry_culture.get(),
                         luck_color.get(),
-                        entry_luck_reason,
+                        entry_luck_reason.get(),
                         closet_color.get(),
                         noble_color_1.get(),
                         noble_color_2.get(),
                         quality_1.get(),
                         quality_2.get(),
                         car.get(),
-                        red_entry,
+                        red_entry.get(),
                         room_color.get(),
-                        checkbutton_room_color_deliberatly_chosen,
-                        entry_room_color_reason,
-                        entry_room_atmosphere,
+                        checkbutton_room_color_deliberatly_chosen.get(),
+                        entry_room_color_reason.get(),
+                        entry_room_atmosphere.get(),
                         learning_color.get(),
                         relaxing_color.get(),
-                        checkbutton_red,
-                        checkbutton_flag,
-                        entry_flag,
+                        checkbutton_red.get(),
+                        checkbutton_flag.get(),
+                        entry_flag.get(),
                         sweet_ingredients.get(),
                         schlager_color.get(),
                         pop_color.get(),
@@ -434,7 +434,7 @@ def save_values_in(form):
                         rap_color.get(),
                         electro_color.get(),
                         favorite_color.get(),
-                        checkbutton_favorite_color)
+                        checkbutton_favorite_color.get())
 
 #get variables to form.py
 def submit_form():
