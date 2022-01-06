@@ -443,8 +443,8 @@ def submit_form():
     
 
 #submit
-submit_button = ttk.Button(root, text="Abschicken")
-submit_button.grid(row=23, column=7, padx=5, pady=5, sticky=tk.E, command=submit_form())
+submit_button = ttk.Button(root, text="Abschicken",  command=submit_form)
+submit_button.grid(row=23, column=7, padx=5, pady=5, sticky=tk.E)
 
 
 def run():
