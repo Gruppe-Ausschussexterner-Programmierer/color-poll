@@ -5,7 +5,7 @@ from shell.gui import *
 
 class Form:
     def __init__(self):
-        self.age: int = None  # @SCHLÄGER TODO: convert to int (is str rn)
+        self.age: int = None 
         self.sex: int = None
         self.culture: str = None
         self.luck = {
@@ -32,7 +32,7 @@ class Form:
         self.meaning_red: int = None
         self.knows_flag : int = None
         self.flag_meaning : str = None
-        self.check_ingredients : str = None # @SCHLÄGER TODO: convert to int (is str rn)
+        self.check_ingredients : str = None
         self.music_genre = {
             "schlager": None,
             "pop": None,
