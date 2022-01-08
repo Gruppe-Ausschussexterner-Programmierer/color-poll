@@ -42,3 +42,34 @@ class Form:
         }
         self.favourite_color : str = None
         self.fits_personality: int = None
+
+    def reset(self):
+        self.age = None
+        self.sex = None
+        self.culture = None
+        self.luck["color"] = None
+        self.luck["reason"] = None
+        self.color["clauset"] = None
+        self.color["noble"] = None
+        self.color["noble 2"] = None
+        self.color["high-quality"] = None
+        self.color["high-quality 2"] = None
+        self.color["car"] = None
+        self.color["learning"] = None
+        self.color["relaxing"] = None
+        self.association_red = None
+        self.room["color"] = None
+        self.room["conscious decision"] = None
+        self.room["reason"] = None
+        self.room["ambience"] = None
+        self.meaning_red = None
+        self.knows_flag = None
+        self.flag_meaning = None
+        self.check_ingredients = None
+        self.music_genre["schlager"] = None
+        self.music_genre["pop"] = None
+        self.music_genre["classic"] = None
+        self.music_genre["rap"] = None
+        self.music_genre["electro"] = None
+        self.favourite_color = None
+        self.fits_personality = None

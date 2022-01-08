@@ -436,10 +436,76 @@ def save_values_in(form):
                         favorite_color.get(),
                         checkbutton_favorite_color.get())
 
+def reset_gui_values():
+    global entry_age
+    global checkbutton_sex
+    global entry_culture
+    global luck_color
+    global entry_luck_reason
+    global closet_color
+    global noble_color_1
+    global noble_color_2
+    global quality_1
+    global quality_2
+    global car
+    global red_entry
+    global room_color
+    global checkbutton_room_color_deliberatly_chosen
+    global entry_room_color_reason
+    global entry_room_atmosphere
+    global learning_color
+    global relaxing_color
+    global checkbutton_red
+    global checkbutton_flag
+    global entry_flag
+    global sweet_ingredients
+    global schlager_color
+    global pop_color
+    global classic_color
+    global rap_color
+    global electro_color
+    global favorite_color
+    global checkbutton_favorite_color
+    #WHAT IN THE GODDAMN STUPID FUCKING WORLD PYTHON
+
+    #TODO @Grümer reset all of those values using .set() functions, I only half know how this works
+    #currently does reset values, but a) creates those weird squares in the checkboxes again on first reset
+    #and b) throws AttributeErrors on second reset (prosumably because of simply setting values to None)
+    entry_age = tk.StringVar(root)
+    checkbutton_sex = 0 # 0->None, 1->Male, 2->Female, 3->Other
+    entry_culture = tk.StringVar(root)
+    luck_color = None
+    entry_luck_reason = tk.StringVar(root)
+    closet_color = None
+    noble_color_1 = None
+    noble_color_2 = None
+    quality_1 = None
+    quality_2 = None
+    car = None
+    red_entry = tk.StringVar(root)
+    room_color = None
+    checkbutton_room_color_deliberatly_chosen = 4 # 4->None, 5->Yes, 6->No
+    entry_room_color_reason = tk.StringVar(root)
+    entry_room_atmosphere = tk.StringVar(root)
+    learning_color = None
+    relaxing_color = None
+    checkbutton_red = 7 # 7->None, 8->Love, 9->War
+    checkbutton_flag = 10 # 10->None, 11->Yes, 12->No
+    entry_flag = tk.StringVar(root)
+    sweet_ingredients = None
+    schlager_color = None
+    pop_color = None
+    classic_color = None
+    rap_color = None
+    electro_color = None
+    favorite_color = None
+    checkbutton_favorite_color = 13 # 13->None, 14->Matches, 15->Does not match
+
 #get variables to form.py
 def submit_form():
     save_values_in(form_manager.form)
     form_manager.on_form_submit(form_manager.form)
+    reset_gui_values()
     
 
 #submit

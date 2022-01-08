@@ -13,6 +13,7 @@ def on_form_submit(form : Form):
     form_data = to_row(form)
     dir = get_file_dir(form.age)
     file.append_csv(dir, form_data)
+    form.reset()
     
 
 def get_file_dir(age):
@@ -62,9 +63,10 @@ def eval_fav_color(fc):
         return False
     return None
 
+
+#bEaUtIfUl ClEaN cOdE
 def to_form(form : Form, a, s, c, lc, lr, cclauset, cnoble, cnoble2, chq, chq2, ccar, clearn, crelax, ar, rc, cd, 
             cdr, ra, mr, kf, fm, ci, mgs, mgp, mgc, mgr, mge, fc, fp):
-
     if a:
         form.age = int(a)
     form.sex = eval_sex(s)
@@ -113,6 +115,8 @@ def to_form(form : Form, a, s, c, lc, lr, cclauset, cnoble, cnoble2, chq, chq2, 
         form.favourite_color = fc
     form.fits_personality = eval_fav_color(fp)
 
+
+#for real tho all these functions are terrible
 def to_row(form : Form):
     csv_entries = []
     csv_entries.append(form.age)
