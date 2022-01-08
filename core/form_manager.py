@@ -8,7 +8,6 @@ form = Form()
 WORKING_DIR = os.path.abspath(os.path.dirname(__file__))
 RESULTS_DIR = os.path.abspath(WORKING_DIR + "/../.data/results") 
 
-#TODO: test this
 def on_form_submit(form : Form):
     form_data = to_row(form)
     dir = get_file_dir(form.age)
@@ -117,6 +116,7 @@ def to_form(form : Form, a, s, c, lc, lr, cclauset, cnoble, cnoble2, chq, chq2, 
 
 
 #for real tho all these functions are terrible
+#TODO @Schläger: convert all strings to lower on csv writing
 def to_row(form : Form):
     csv_entries = []
     csv_entries.append(form.age)
