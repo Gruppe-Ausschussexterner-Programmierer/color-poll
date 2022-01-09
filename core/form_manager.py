@@ -1,5 +1,4 @@
 #containing all functions necessary to perform actions on an instance of the form class
-#from form import Form
 from core.form import Form
 from core import file
 import os.path
@@ -68,50 +67,52 @@ def to_form(form : Form, a, s, c, lc, lr, cclauset, cnoble, cnoble2, chq, chq2, 
             cdr, ra, mr, kf, fm, ci, mgs, mgp, mgc, mgr, mge, fc, fp):
     if a:
         form.age = int(a)
-    form.sex = eval_sex(s)
-    form.culture = c
+    if eval_sex(s): #yeah fuck data redundancy and unnessecary compution
+        form.sex = eval_sex(s).lower()
+    form.culture = c.lower()
     if lc != "-----":
-        form.luck["color"] = lc
-    form.luck["reason"] = lr
+        form.luck["color"] = lc.lower()
+    form.luck["reason"] = lr.lower()
     if cclauset != "-----":
-        form.color["clauset"] = cclauset
+        form.color["clauset"] = cclauset.lower()
     if cnoble != "-----":
-        form.color["noble"] = cnoble
+        form.color["noble"] = cnoble.lower()
     if cnoble2 != "-----":
-        form.color["noble 2"] = cnoble2
+        form.color["noble 2"] = cnoble2.lower()
     if chq != "-----":
-        form.color["high-quality"] = chq
+        form.color["high-quality"] = chq.lower()
     if chq2 != "-----":
-        form.color["high-quality 2"] = chq2
+        form.color["high-quality 2"] = chq2.lower()
     if ccar != "-----":
-        form.color["car"] = ccar
+        form.color["car"] = ccar.lower()
     if clearn != "-----":
-        form.color["learning"] = clearn
+        form.color["learning"] = clearn.lower()
     if crelax != "-----":
-        form.color["relaxing"] = crelax
-    form.association_red = ar
+        form.color["relaxing"] = crelax.lower()
+    form.association_red = ar.lower()
     if rc != "-----":
-        form.room["color"] = rc
+        form.room["color"] = rc.lower()
     form.room["conscious decision"] = eval_decision(cd)
-    form.room["reason"] = cdr
-    form.room["ambience"] = ra
-    form.meaning_red = eval_red(mr)
+    form.room["reason"] = cdr.lower()
+    form.room["ambience"] = ra.lower()
+    if eval_red(mr):
+        form.meaning_red = eval_red(mr).lower()
     form.knows_flag = eval_flag(kf)
-    form.flag_meaning = fm
+    form.flag_meaning = fm.lower()
     if ci and ci != "-----":
         form.check_ingredients = int(ci)
     if mgs != "-----":
-        form.music_genre["schlager"] = mgs
+        form.music_genre["schlager"] = mgs.lower()
     if mgp != "-----":
-        form.music_genre["pop"] = mgp
+        form.music_genre["pop"] = mgp.lower()
     if mgc != "-----":
-        form.music_genre["classic"] =mgc 
+        form.music_genre["classic"] = mgc .lower()
     if mgr != "-----":
-        form.music_genre["rap"] = mgr
+        form.music_genre["rap"] = mgr.lower()
     if mge != "-----":
-        form.music_genre["electro"] = mge 
+        form.music_genre["electro"] = mge .lower()
     if fc != "-----":
-        form.favourite_color = fc
+        form.favourite_color = fc.lower()
     form.fits_personality = eval_fav_color(fp)
 
 

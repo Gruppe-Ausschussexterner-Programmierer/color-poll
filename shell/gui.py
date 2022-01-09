@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import Checkbutton, StringVar, ttk
+from tkinter import StringVar, ttk
 from core import form_manager
 
 #setup root
@@ -468,6 +468,8 @@ def save_values_in(form):
 
 
 def reset():
+    global root
+
     global entry_age
     global entry_luck_reason
     global red_entry
@@ -475,6 +477,10 @@ def reset():
     global entry_room_atmosphere
     global entry_flag
     
+    #clears entire window, so that it can be newly written on
+    for widget in root.winfo_children():
+        widget.destroy()
+
     #resetting text of entry boxes
     entry_age.set('')
     entry_luck_reason.set('')
@@ -482,6 +488,8 @@ def reset():
     entry_room_color_reason.set('')
     entry_room_atmosphere.set('')
     entry_flag.set('')
+
+    #there probably is a way more elegant way to do this rather than simply redrawing the entire thing, but it works so stfu
     setup()
 
 
