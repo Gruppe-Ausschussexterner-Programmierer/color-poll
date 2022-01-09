@@ -432,6 +432,10 @@ def setup():
     favorite_color_personality_Checkbutton_no = ttk.Checkbutton(root, onvalue=15, variable=checkbutton_favorite_color, text="Passt nicht")
     favorite_color_personality_Checkbutton_no.grid(row=22, column=3, padx=5, pady=5)
 
+    #submit
+    submit_button = ttk.Button(root, text="Abschicken",  command=submit_form)
+    submit_button.grid(row=23, column=7, padx=5, pady=5, sticky=tk.E)
+
 
 def save_values_in(form):
     global entry_age
@@ -506,6 +510,4 @@ def run():
     root.mainloop()
 
 setup()
-#submit
-submit_button = ttk.Button(root, text="Abschicken",  command=submit_form)
-submit_button.grid(row=23, column=7, padx=5, pady=5, sticky=tk.E)
+
