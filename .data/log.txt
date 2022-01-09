@@ -1,8 +1,0 @@
-received data
-transformed data to row
-got file directory: c:\Coding Stuff\GAP\color-poll\.data\results\age69.csv
-appended to csv file
-received data
-transformed data to row
-got file directory: c:\Coding Stuff\GAP\color-poll\.data\results\age69.csv
-appended to csv file

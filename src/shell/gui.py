@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import StringVar, ttk
 from core import form_manager
+import os
 
 #setup root
 root = tk.Tk()
@@ -41,7 +42,7 @@ favorite_color = None
 checkbutton_favorite_color = 13 # 13->None, 14->Matches, 15->Does not match
 
 def log(message):
-    with open("log.txt", "a") as log:
+    with open(os.path.abspath(form_manager.WORKING_DIR + "/../../.data/log.txt"), "a") as log:
         log.write("gui.py: " + message + "\n")
 
 def setup():
@@ -498,7 +499,7 @@ def reset():
     entry_room_atmosphere.set('')
     entry_flag.set('')
 
-    log("reset window")
+    log("reset window\n")
     #there probably is a way more elegant way to do this rather than simply redrawing the entire thing, but it works so stfu
     setup()
 

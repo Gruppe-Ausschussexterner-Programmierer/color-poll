@@ -19,7 +19,7 @@ def on_form_submit(form : Form):
     dir = get_file_dir(form.age)
     log("got file directory: " + dir)
     file.append_csv(dir, form_data)
-    log("appended to csv file \n")
+    log("appended to csv file")
     form.reset()
     
 
