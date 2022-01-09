@@ -5,12 +5,21 @@ import os.path
 
 form = Form()
 WORKING_DIR = os.path.abspath(os.path.dirname(__file__))
-RESULTS_DIR = os.path.abspath(WORKING_DIR + "/../.data/results") 
+RESULTS_DIR = os.path.abspath(WORKING_DIR + "/../../.data/results") 
+
+
+def log(message):
+    with open(os.path.abspath(WORKING_DIR + "/../../.data/log.txt"), "a") as log:
+        log.write("form_manager.py: " + message + "\n")
 
 def on_form_submit(form : Form):
+    log("received data")
     form_data = to_row(form)
+    log("transformed data to row")
     dir = get_file_dir(form.age)
+    log("got file directory: " + dir)
     file.append_csv(dir, form_data)
+    log("appended to csv file \n")
     form.reset()
     
 
@@ -23,6 +32,7 @@ def get_file_dir(age):
     file += ".csv"
 
     return os.path.abspath(RESULTS_DIR + "/" + file)
+    #return "c:/Coding Stuff/GAP/color-poll/.data/results/age69.csv"
 
 def eval_sex(s):
     if s == 0:

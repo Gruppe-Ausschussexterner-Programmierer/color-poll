@@ -40,6 +40,10 @@ electro_color = None
 favorite_color = None
 checkbutton_favorite_color = 13 # 13->None, 14->Matches, 15->Does not match
 
+def log(message):
+    with open("log.txt", "a") as log:
+        log.write("gui.py: " + message + "\n")
+
 def setup():
     global entry_age
     global checkbutton_sex
@@ -469,6 +473,7 @@ def save_values_in(form):
                         electro_color.get(),
                         favorite_color.get(),
                         checkbutton_favorite_color.get())
+    log("saved values")
 
 
 def reset():
@@ -493,12 +498,14 @@ def reset():
     entry_room_atmosphere.set('')
     entry_flag.set('')
 
+    log("reset window")
     #there probably is a way more elegant way to do this rather than simply redrawing the entire thing, but it works so stfu
     setup()
 
 
 #get variables to form.py
 def submit_form():
+    log("submit button pressed")
     save_values_in(form_manager.form)
     form_manager.on_form_submit(form_manager.form)
     reset()
@@ -507,7 +514,6 @@ def submit_form():
 #all stuff essential for program execution
 
 def run():
+    setup()
     root.mainloop()
-
-setup()
 
