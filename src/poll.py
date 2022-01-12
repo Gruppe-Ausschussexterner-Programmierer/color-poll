@@ -1,4 +1,3 @@
-#EXECUTE THIS, OTHERWISE BACKEND WON'T FIND CSV FILES
 from shell import gui
 from core import form_manager
 import os

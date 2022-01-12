@@ -41,7 +41,7 @@ class Form:
             "electro": None
         }
         self.favourite_color : str = None
-        self.fits_personality: int = None
+        self.fits_personality = None
 
     def reset(self):
         self.age = None

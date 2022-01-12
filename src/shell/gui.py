@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import StringVar, ttk
 from core import form_manager
 import os
+import traceback
 
 #setup root
 root = tk.Tk()
@@ -39,7 +40,7 @@ classic_color = None
 rap_color = None
 electro_color = None
 favorite_color = None
-checkbutton_favorite_color = 13 # 13->None, 14->Matches, 15->Does not match
+checkbutton_favorite_color = 13 # 13->None, 14->Matches, 15->Does not match, 16 -> matches partially
 
 def log(message):
     with open(os.path.abspath(form_manager.WORKING_DIR + "/../../.data/log.txt"), "a") as log:
@@ -437,6 +438,9 @@ def setup():
     favorite_color_personality_Checkbutton_no = ttk.Checkbutton(root, onvalue=15, variable=checkbutton_favorite_color, text="Passt nicht")
     favorite_color_personality_Checkbutton_no.grid(row=22, column=3, padx=5, pady=5)
 
+    favorite_color_personality_Checkbutton_inbetween = ttk.Checkbutton(root, onvalue=16, variable=checkbutton_favorite_color, text="Passt halbwegs")
+    favorite_color_personality_Checkbutton_inbetween.grid(row=22, column=5, padx=5, pady=5)
+
     #submit
     submit_button = ttk.Button(root, text="Abschicken",  command=submit_form)
     submit_button.grid(row=23, column=7, padx=5, pady=5, sticky=tk.E)
@@ -506,10 +510,13 @@ def reset():
 
 #get variables to form.py
 def submit_form():
-    log("submit button pressed")
-    save_values_in(form_manager.form)
-    form_manager.on_form_submit(form_manager.form)
-    reset()
+    try:
+        log("submit button pressed")
+        save_values_in(form_manager.form)
+        form_manager.on_form_submit(form_manager.form)
+        reset()
+    except Exception as e:
+        log("uncaught exception durin submit operation:\n" + str(traceback.print_exception(type(e), e, e.__traceback__)) + "\n")
     
 #------------------------------------------------------------------------------------------------------
 #all stuff essential for program execution
