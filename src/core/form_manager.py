@@ -2,6 +2,7 @@
 from core.form import Form
 from core import file
 import os.path
+import traceback
 
 form = Form()
 WORKING_DIR = os.path.abspath(os.path.dirname(__file__))
@@ -18,8 +19,11 @@ def on_form_submit(form : Form):
     log("transformed data to row")
     dir = get_file_dir(form.age)
     log("got file directory: " + dir)
-    file.append_csv(dir, form_data)
-    log("appended to csv file")
+    try:
+        file.append_csv(dir, form_data)
+        log("appended to csv file")
+    except FileNotFoundError as fne:
+        log("File Not Found exception:\n" + str(traceback.print_exception(type(fne), fne, fne.__traceback__)) + "\n")
     form.reset()
     
 

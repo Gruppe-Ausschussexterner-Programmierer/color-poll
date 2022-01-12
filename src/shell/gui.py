@@ -516,7 +516,7 @@ def submit_form():
         form_manager.on_form_submit(form_manager.form)
         reset()
     except Exception as e:
-        log("uncaught exception durin submit operation:\n" + str(traceback.print_exception(type(e), e, e.__traceback__)) + "\n")
+        log("uncaught exception during submit operation:\n" + str(traceback.print_exception(type(e), e, e.__traceback__)) + "\n")
     
 #------------------------------------------------------------------------------------------------------
 #all stuff essential for program execution
