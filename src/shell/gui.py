@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import ALL, BOTH, HORIZONTAL, LEFT, RIGHT, VERTICAL, Y, Canvas, Frame, StringVar, ttk
+from tkinter import ALL, BOTH, LEFT, RIGHT, VERTICAL, Y, Canvas, Frame, StringVar, ttk
 from turtle import bgcolor
 from core import form_manager
 import os
@@ -9,7 +9,7 @@ import traceback
 root = tk.Tk()
 root.geometry("950x590")
 root.title("Auswertungsbogen")
-root.resizable(0, 0)
+root.resizable(True, True)
 
 main_frame = Frame(root)
 main_frame.pack(fill=BOTH, expand=1)

@@ -30,10 +30,11 @@ def on_form_submit(form : Form):
 def get_file_dir(age):
     log("received age: " + str(age))
     file = "age" + str(age)
-    if age <= 9:
-        file += "_minus"
-    elif age == 18: #TODO when combining everything together, add all values belonging in here to here
-        file += "_plus"
+    if age:
+        if age <= 9:
+            file = "age9_minus"
+        elif age == 18: #TODO when combining everything together, add all values belonging in here to here
+            file += "_plus"
     file += ".csv"
 
     return os.path.abspath(RESULTS_DIR + "/" + file)
