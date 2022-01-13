@@ -133,7 +133,6 @@ def to_form(form : Form, a, s, c, lc, lr, cclauset, cnoble, cnoble2, chq, chq2, 
 
 
 #for real tho all these functions are terrible
-#TODO @Schläger: convert all strings to lower on csv writing
 def to_row(form : Form):
     csv_entries = []
     csv_entries.append(form.age)
