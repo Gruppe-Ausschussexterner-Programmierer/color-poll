@@ -15,3 +15,16 @@ In here, you will find a documentation of how to use the console dialogue. There
 ---
 list of commands:
 > file `filename`
+> file *
+
+> filter not `filter` and `filter` or `filter` ...
+    (`filter`:
+        a = b
+        a == b
+        a > b
+        a < b )
+> filter exclude `filter` (-> does 'not' serve exact same purpose?)
+
+> view 
+
+> save `new_file`
