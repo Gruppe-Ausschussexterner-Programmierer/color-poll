@@ -37,35 +37,34 @@ def tokenize(inp):
     i = 0
     while i < len(tokens):
         if '==' in tokens[i] and len(tokens[i]) > 2: #checking for length makes sure that '==' items get skipped
-            t_token = tokens[i].split("==")
-            if '' in t_token:
-                if tokens[i][0] == '=': t_token.insert(0, '==')
-                else: t_token.insert(1, '==') #if token does not begin with '==', it has to be inserted at index 1
-            else: t_token.insert(1, '==')
-
-            #replaces original token with modified parts of t_token
-            del tokens[i]
-            while '' in t_token: t_token.remove('')
-            for j in range(len(t_token)):
-                tokens.insert(i + j, t_token[j])
-
-        elif '=' in tokens[i] and len(tokens[i]) > 1 and not '==' in tokens[i]:
-            t_token = tokens[i].split("=")
-            if '' in t_token:
-                if tokens[i][0] == '=': t_token.insert(0, '=')
-                else: t_token.insert(1, '=')
-            else: t_token.insert(1, '=')
-
-            del tokens[i]
-            while '' in t_token: t_token.remove('')
-            for j in range(len(t_token)):
-                tokens.insert(i + j, t_token[j])
-
-
-        #TODO still add all of this shit for '>' and '<' signs -> create seperate function
+            split_filter_at("==", tokens, i)
+        elif '=' in tokens[i] and not '==' in tokens[i] and len(tokens[i]) > 1:
+            split_filter_at('=', tokens, i)
+        elif '<' in tokens[i] and len(tokens[i]) > 1:
+            split_filter_at('<', tokens, i)
+        elif '>' in tokens[i] and len(tokens[i]) > 1:
+            split_filter_at('>', tokens, i)
         i += 1
 
     return tokens
+
+
+def split_filter_at(operator, tokens, i):
+    t_token = tokens[i].split(operator)
+    if '' in t_token:
+        if tokens[i][0] == operator:
+            t_token.insert(0, operator)
+        # if token does not begin with `operator`, it has to be inserted at index 1
+        else: t_token.insert(1, operator)
+    else: t_token.insert(1, operator)
+
+    #replaces original token with modified parts of t_token
+    del tokens[i]
+    while '' in t_token:
+        t_token.remove('')
+    for j in range(len(t_token)):
+        tokens.insert(i + j, t_token[j])
+
 
 def get_file_dir(f):
     return RESULTS_DIR + '/' + f
@@ -75,6 +74,7 @@ def print_all_filenames():
     files = glob.glob(RESULTS_DIR + "/*")
     for filename in files:
         print(filename.replace(RESULTS_DIR + '\\', ''))
+
 
 if __name__ == "__main__":
     while True:

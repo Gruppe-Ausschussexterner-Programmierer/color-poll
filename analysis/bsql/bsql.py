@@ -17,6 +17,10 @@ def file(f_dir):
 #allows for more detailed filtering of selected data set
 #@param cm: input tokenized command 
 def filter(cm):
+    global DATA_SELECTED
+
+    #DATA_FILTERED = DATA_SELECTED  # from here on out, only work on DATA_FILTERED
+
     command = cm.copy()
     command.remove(command[0]) #gets rid of unnecessary 'filter' key word
 
@@ -26,6 +30,26 @@ def filter(cm):
             filters.append(command[i])
         if is_comparison_operator(command[i]):
             filters.append([command[i - 1], command[i], command[i + 1]])
+
+    #TODO add bigger_than
+    #TODO handle boolean values
+    #TODO try catches
+    for row in DATA_SELECTED:
+        filter_applied = []
+        for filter in filters:
+            if type(filter) == list:
+                operator = filter[1]
+                name = filter[0]
+                value = filter[2]
+                if operator == '==':
+                    filter_applied.append(double_equals(get_value(row, name), value))
+                elif operator == '=':
+                    filter_applied.append(single_equals(get_value(row, name), value))
+                elif operator == '<':
+                    filter_applied.append(smaller_than(get_value(row, name), value))
+            else:
+                filter_applied.append(filter)
+    print("done filtering")
     pass
 
 
@@ -35,6 +59,20 @@ def save(nf):
 #allows to view every entry in selected data formatted
 def view():
     pass
+
+#TODO check for a and b bein integers, otherwise it won't work
+def smaller_than(a, b):
+    pass
+
+def single_equals(a, b):
+    try:
+        return int(a) == int(b)
+    except ValueError: #either a or b cannot be converted to int type
+        return str(b) in str(a)
+
+
+def double_equals(a, b):
+    return a == b
 
 
 def is_logical_operator(token):
@@ -50,6 +88,27 @@ def is_comparison_operator(token):
     if token == '>': return True #TODO handle operator
     if token == '<': return True #TODO handle operator
     return False
+
+
+def get_value(row, col : str):
+    index = get_column(col)
+    if type(index) == tuple:
+        val1 = row[index[0]]
+        val2 = row[index[1]]
+        value = str(val1) + str(val2)
+    else:
+        value = row[index]
+
+    try:
+        return int(value)
+    except ValueError:
+        pass
+    try: 
+        return eval(value)
+    except Exception:
+        pass
+
+    return value
 
 
 #could be done way more elegantly by simply saving everything inside of a dictionary but who cares
