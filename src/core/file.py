@@ -16,4 +16,4 @@ def append_csv(file, new_content):
         writer = csv.writer(wf, delimiter=';', quotechar='"', quoting=csv.QUOTE_MINIMAL)
         writer.writerow(new_content)
         wf.close()
-
+        

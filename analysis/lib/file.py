@@ -17,3 +17,10 @@ def append_csv(file, new_content):
         writer.writerow(new_content)
         wf.close()
 
+
+def override_csv(file, new_content):
+    with open(file, "w+", newline='', encoding="utf-8")as wf:
+        writer = csv.writer(wf, delimiter=';', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        for row in new_content:
+            writer.writerow(row)
+

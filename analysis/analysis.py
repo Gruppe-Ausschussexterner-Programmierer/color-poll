@@ -6,16 +6,12 @@ from bsql import bsql as bs
 WORKING_DIR = os.path.abspath(os.path.dirname(__file__))
 RESULTS_DIR = os.path.abspath(WORKING_DIR + "/../.data/results/")
 
-#TODO functionality: add a default way to deal with filter requests without destroying data set and having to reload it
-
-#TODO command: receive total amounts of entries for selected data set
 #TODO command: on save: select a way to sort entries
 #TODO command: view every stat of current data set
-
-#TODO command file: add way to view all existing files and their name
+#TODO command: help command showing every possible command and a brief description of it
 
 def run_console_dialogue():
-    command = input("> ")
+    command = input("> ").lower()
     tokens = tokenize(command)
 
     if tokens[0] == "file":
@@ -26,8 +22,10 @@ def run_console_dialogue():
     elif tokens[0] == "filter":
         bs.filter(tokens)
     elif tokens[0] == "save":
-        bs.save(tokens[1])
-    pass
+        if tokens[1] == "overall.csv": #protecting overall.csv from being overridden
+            print("cannot override overall.csv")
+        else:
+            bs.save(get_file_dir(tokens[1]))
 
 #this was way too much fucking work
 def tokenize(inp):
@@ -67,7 +65,7 @@ def split_filter_at(operator, tokens, i):
 
 
 def get_file_dir(f):
-    return RESULTS_DIR + '/' + f
+    return RESULTS_DIR + '\\' + f
 
 
 def print_all_filenames():
@@ -78,4 +76,7 @@ def print_all_filenames():
 
 if __name__ == "__main__":
     while True:
-        run_console_dialogue()
+        try:
+            run_console_dialogue()
+        except:
+            print("invalid syntax")

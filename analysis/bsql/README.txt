@@ -24,8 +24,8 @@ list of commands:
         a > b
         a < b )
 
-        DOES NOT SUPPORT <= OR >= OPERATORS
-> filter exclude `filter` (-> does 'not' serve exact same purpose?)
+        !! DOES NOT SUPPORT <= OR >= OPERATORS !!
+> filter clear
 
 > view 
 
