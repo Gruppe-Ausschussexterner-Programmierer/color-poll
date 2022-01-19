@@ -79,11 +79,21 @@ def save(nf):
     #TODO add `order` clause
 
 #allows to view every entry in selected data formatted
-def view():
-    pass
+def view(cm):
+    global data_selected
+    #global data_filtered
+
+    command = cm.copy()
+    command.remove(command[0])
+
+    if command[0] == '*':
+        for row in data_selected:
+            print(format_row(row))
+
+    
 
 #--------------------------------------------------------------------------------------------------------------------------------
-#@REGION filter operations
+#@REGION working on data set
 
 def combine_filters(filter_applied):
     #searches for 'not's in filter_applied - if it finds any, the boolean value after it will get flipped and the not removed
@@ -127,6 +137,10 @@ def evaluate_filters(filter, row):
                 raise Exception
     else:
         return filter
+
+
+def format_row(row : list):
+    pass
 
 #--------------------------------------------------------------------------------------------------------------------------------
 #@REGION operator handlers

@@ -21,6 +21,8 @@ def run_console_dialogue():
             bs.file(get_file_dir(tokens[1]))
     elif tokens[0] == "filter":
         bs.filter(tokens)
+    elif tokens[0] == "view":
+        bs.view(tokens)
     elif tokens[0] == "save":
         if tokens[1] == "overall.csv": #protecting overall.csv from being overridden
             print("cannot override overall.csv")
