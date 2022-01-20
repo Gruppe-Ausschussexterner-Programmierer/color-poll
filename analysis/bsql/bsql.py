@@ -4,6 +4,10 @@ FILE_DATA = None #never modified, always kept to revert filters
 data_selected = None
 data_filtered = None
 
+entries = ["age", "sex", "culture", "luck-color", "luck-reason", "color-clauset", "color-noble", "color-noble", "color-highquality",
+           "color-car", "association-red", "room-color", "room-color-chosen", "room-color-reason", "room-ambience", "color-learning",
+           "color-relaxing", "meaning-red", "knows-flag", "flag-meaning", "check-ingredients", "genre-schlager", "genre-pop", 
+           "genre-classic", "genre-pop", "genre-classic", "genre-rap", "genre-electro", "favourite-color", "fits-personality"]
 
 #--------------------------------------------------------------------------------------------------------------------------------
 #@REGION bsql commands
@@ -140,7 +144,8 @@ def evaluate_filters(filter, row):
 
 
 def format_row(row : list):
-    pass
+    for entry in row:
+        print(entry)
 
 #--------------------------------------------------------------------------------------------------------------------------------
 #@REGION operator handlers
@@ -213,11 +218,26 @@ def get_value(row, col : str):
 
     return value
 
+def get_column_name(index):
+    try:
+        return entries[index]
+    except:
+        return None
+
 
 #could be done way more elegantly by simply saving everything inside of a dictionary but who cares
 #code: perfectly clean, readable and structured -> bsql.get_column() go brrrrrrrrrrrrrrrrrrrrr
 def get_column(col : str):
-    if col == "age":
+    if col == "color-noble":
+        return (6, 7)
+    elif col == "color-highquality":
+        return (8, 9)
+    else:
+        try:
+            return entries.index(col)
+        except :
+            return None
+    """if col == "age":
         return 0
     elif col == "sex":
         return 1
@@ -271,4 +291,4 @@ def get_column(col : str):
         return 27
     elif col == "fits-personality":
         return 28
-    return None
+    return None"""
