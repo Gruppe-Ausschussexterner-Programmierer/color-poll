@@ -1,0 +1,18 @@
+gui.py: submit button pressed
+gui.py: saved values
+form_manager.py: received data
+form_manager.py: transformed data to row
+form_manager.py: received age: None
+form_manager.py: got file directory: c:\Coding Stuff\GAP\color-poll\.data\results\ageNone.csv
+form_manager.py: appended to csv file
+gui.py: reset window
+
+gui.py: submit button pressed
+gui.py: saved values
+form_manager.py: received data
+form_manager.py: transformed data to row
+form_manager.py: received age: 69
+form_manager.py: got file directory: c:\Coding Stuff\GAP\color-poll\.data\results\age69.csv
+form_manager.py: appended to csv file
+gui.py: reset window
+
