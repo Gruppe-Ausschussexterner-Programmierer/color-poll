@@ -1,13 +1,17 @@
+#TODO: FOR BSQLGUI, HAVE EVERY FUNCTION RETURN SOMETHING INSTEAD OF PRINTING IT
+# ==> HAVING VALUES RETURNED ALLOWS FOR EASY ANALYSIS
+
 from lib import file as csv
+import operator
 
 FILE_DATA = None #never modified, always kept to revert filters
 data_selected = None
 data_filtered = None
 
 entries = ["age", "sex", "culture", "luck-color", "luck-reason", "color-clauset", "color-noble", "color-noble", "color-highquality",
-           "color-car", "association-red", "room-color", "room-color-chosen", "room-color-reason", "room-ambience", "color-learning",
-           "color-relaxing", "meaning-red", "knows-flag", "flag-meaning", "check-ingredients", "genre-schlager", "genre-pop", 
-           "genre-classic", "genre-pop", "genre-classic", "genre-rap", "genre-electro", "favourite-color", "fits-personality"]
+           "color-highquality","color-car", "association-red", "room-color", "room-color-chosen", "room-color-reason", 
+           "room-ambience", "color-learning","color-relaxing", "meaning-red", "knows-flag", "flag-meaning", "check-ingredients", 
+           "genre-schlager", "genre-pop", "genre-classic", "genre-rap", "genre-electro", "favourite-color", "fits-personality"]
 
 #--------------------------------------------------------------------------------------------------------------------------------
 #@REGION bsql commands
@@ -90,12 +94,51 @@ def view(cm):
     command = cm.copy()
     command.remove(command[0])
 
+    try:
+        view_nones = command[1] + " " + command [2] == "--view all" #comparing deals with command[1] and [2] being sth else
+    except IndexError:
+        view_nones = False
+
     if command[0] == '*':
+        num = 1 #ui sugar
         for row in data_selected:
-            print(format_row(row))
+            print(str(num) + ".: {", end='')
+            print(format_row(row, view_nones))
+            print("}")
+            print(20 * "-")
+            num += 1
+    elif command[0][0] == '-':
+        attribute = command[0][1:] #cuts off first character
+        index = get_column(attribute)
+
+        values : dict = {}
+        for row in data_selected:
+            if type(index) == tuple:
+                val1 = row[index[0]]
+                val2 = row[index[1]]
+                value = str(val1) + "," + str(val2)
+            else:
+                value = str(row[index]).lower()
+            #splitting value in case it is a list seperated with commas
+            split_values = value.split(',')
+            for val in split_values:
+                if val[0] == " ":
+                    val = val[1:]
+                if val[-1] == ' ':
+                    val = val[:-1]
+                
+                try:
+                    values[val] += 1
+                except KeyError: #creates entry if not yet existant
+                    values[val] = 1
+        #returns values in `values` sorted from highest to lowest as a list of tuples
+        values_sorted = sorted(values.items(), key=operator.itemgetter(1), reverse=True)
+        for value_pair in values_sorted:
+            print("\t{0[0]}: {0[1]}".format(value_pair))
+            
+
 
     
-
 #--------------------------------------------------------------------------------------------------------------------------------
 #@REGION working on data set
 
@@ -112,8 +155,7 @@ def combine_filters(filter_applied):
     filters_combined: bool = filter_applied[0]
     for i in range(len(filter_applied)):
         if is_logical_operator(filter_applied[i]):
-            filters_combined = eval_logical_operators(
-                filters_combined, filter_applied[i], filter_applied[i + 1])
+            filters_combined = eval_logical_operators(filters_combined, filter_applied[i], filter_applied[i + 1])
 
     return filters_combined
 
@@ -143,9 +185,16 @@ def evaluate_filters(filter, row):
         return filter
 
 
-def format_row(row : list):
+def format_row(row : list, view_all : bool):
+    out = "\t"
+    entry_index = 0
     for entry in row:
-        print(entry)
+        if view_all or entry != '':
+            out += "{0}: {1}\n\t".format(get_column_name(entry_index), entry)
+        entry_index += 1
+    
+    out = out[:-4]
+    return out
 
 #--------------------------------------------------------------------------------------------------------------------------------
 #@REGION operator handlers
@@ -224,9 +273,6 @@ def get_column_name(index):
     except:
         return None
 
-
-#could be done way more elegantly by simply saving everything inside of a dictionary but who cares
-#code: perfectly clean, readable and structured -> bsql.get_column() go brrrrrrrrrrrrrrrrrrrrr
 def get_column(col : str):
     if col == "color-noble":
         return (6, 7)
@@ -237,58 +283,3 @@ def get_column(col : str):
             return entries.index(col)
         except :
             return None
-    """if col == "age":
-        return 0
-    elif col == "sex":
-        return 1
-    elif col == "culture":
-        return 2
-    elif col == "luck-color":
-        return 3
-    elif col == "luck-reason":
-        return 4
-    elif col == "color-clauset":
-        return 5
-    elif col == "color-noble":
-        return (6, 7)
-    elif col == "color-highquality":
-        return (8, 9)
-    elif col == "color-car":
-        return 10
-    elif col == "association-red":
-        return 11
-    elif col == "room-color":
-        return 12
-    elif col == "room-color-chosen":
-        return 13
-    elif col == "room-color-reason":
-        return 14
-    elif col == "room-ambience":
-        return 15
-    elif col == "color-learning":
-        return 16
-    elif col == "color-relaxing":
-        return 17
-    elif col == "meaning-red":
-        return 18
-    elif col == "knows-flag":
-        return 19
-    elif col == "flag-meaning":
-        return 20
-    elif col == "check-ingredients":
-        return 21
-    elif col == "genre-schlager":
-        return 22
-    elif col == "genre-pop":
-        return 23
-    elif col == "genre-classic":
-        return 24
-    elif col == "genre-rap":
-        return 25
-    elif col == "genre-electro":
-        return 26
-    elif col == "favourite-color":
-        return 27
-    elif col == "fits-personality":
-        return 28
-    return None"""

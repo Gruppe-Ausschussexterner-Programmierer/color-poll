@@ -6,12 +6,12 @@ from bsql import bsql as bs
 WORKING_DIR = os.path.abspath(os.path.dirname(__file__))
 RESULTS_DIR = os.path.abspath(WORKING_DIR + "/../.data/results/")
 
+
+#TODO functionality: add syntactically more helpful error handling
 #TODO command: on save: select a way to sort entries
-#TODO command: view every stat of current data set
 #TODO command: help command showing every possible command and a brief description of it
 
-def run_console_dialogue():
-    command = input("> ").lower()
+def bsql(command):
     tokens = tokenize(command)
 
     if tokens[0] == "file":
@@ -24,10 +24,15 @@ def run_console_dialogue():
     elif tokens[0] == "view":
         bs.view(tokens)
     elif tokens[0] == "save":
-        if tokens[1] == "overall.csv": #protecting overall.csv from being overridden
+        if tokens[1] == "overall.csv":  # protecting overall.csv from being overridden
             print("cannot override overall.csv")
         else:
             bs.save(get_file_dir(tokens[1]))
+
+
+def run_console_dialogue():
+    command = input("> ").lower()
+    bsql(command)
 
 #this was way too much fucking work
 def tokenize(inp):
