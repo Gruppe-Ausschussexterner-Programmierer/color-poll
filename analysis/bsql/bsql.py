@@ -122,10 +122,13 @@ def view(cm):
             #splitting value in case it is a list seperated with commas
             split_values = value.split(',')
             for val in split_values:
-                if val[0] == " ":
-                    val = val[1:]
-                if val[-1] == ' ':
-                    val = val[:-1]
+                if len(val) >= 1: #prevents empty attributes from crashing application
+                    if val[0] == " ":
+                        val = val[1:]
+                    if val[-1] == ' ':
+                        val = val[:-1]
+                else:
+                    val = "no answer"
                 
                 try:
                     values[val] += 1
@@ -136,8 +139,6 @@ def view(cm):
         for value_pair in values_sorted:
             print("\t{0[0]}: {0[1]}".format(value_pair))
             
-
-
     
 #--------------------------------------------------------------------------------------------------------------------------------
 #@REGION working on data set
@@ -193,7 +194,7 @@ def format_row(row : list, view_all : bool):
             out += "{0}: {1}\n\t".format(get_column_name(entry_index), entry)
         entry_index += 1
     
-    out = out[:-4]
+    out = out[:-2]
     return out
 
 #--------------------------------------------------------------------------------------------------------------------------------

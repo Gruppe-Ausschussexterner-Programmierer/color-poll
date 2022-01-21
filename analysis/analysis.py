@@ -49,6 +49,8 @@ def tokenize(inp):
             split_filter_at('<', tokens, i)
         elif '>' in tokens[i] and len(tokens[i]) > 1:
             split_filter_at('>', tokens, i)
+        elif '*' in tokens[i] and len(tokens[i]) > 1:
+            split_filter_at('*', tokens, i)
         i += 1
 
     return tokens

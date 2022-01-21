@@ -7,9 +7,10 @@ call-it-official documentation of "Bullshit Query Language" (short: BSQL)
 -----
 english:
 
-In here, you will find a documentation of how to use the console dialogue. There will also be a graphical user interface, however that will take longer and should be self-explanatory.
+In here, you will find a documentation of how to use the console dialogue.
+AT THE VERY END OF THIS FILE, THERE WILL BE A QUICK OVERVIEW ON ALL COMMANDS AND ALL FORM ATTRIBUTE NAMES AS WELL AS THEIR CORRESPONDING QUESTIONS.
 
-Before going into greater detail on the syntax, it might be of value to get a quick overview on the entire process. In bsql, quiries always
+Before going into greater detail on the syntax, it might be of value to get a quick overview on the entire process. In BSQL, quiries always
 follow the same structure:
             1. reading the content of a file
             2. filtering the selected content
@@ -42,6 +43,8 @@ This will return you a list of every existing file's name and should look someth
     age10.csv
     age11.csv
     ...
+
+Note that using `file *` won't actualy open any file, you still have to do that manually afterwards.
 
 ------------------------------------------------------------------------------
 
@@ -109,7 +112,7 @@ people, who only identify as french. In this case, using `==` will eliminate all
 
 Note that when comparing numbers, both of these work exactly the same.
 
-
+-----
 But that's not it for all the filtering tools that are at your disposal. You can also chain individual filters together, for example:
 
     > file overall.csv
@@ -129,11 +132,134 @@ Whilst probably quite self-explanatory, I'll shortly go over each of them:
     `and` is really straight forward - To evaluate to True (or "meeting your filter requirements"), the filter on each side of the operator
     has to apply to a form.
 
-    2. or
+        e.g: 
+        > filter age = 11 and sex == männlich
 
+    2. or
+    `or` evaluates to true, when AT LEAST one of the expressions around it is True. The mathematical `or` is inclusive, which means it
+    differs from the common use of 'or' (exlusive, or colloquial "either or") in that it also evaluates to True when both conditions are True - In
+    other words, if you use a filter expression containing `or`, in order to NOT be regarded as matching the filter requirements, a form would have 
+    to fulfill NONE of the requirements.
+
+        e.g:
+        > filter age = 11 or sex == männlich
+
+    3. not
+    `not` simply negates the expression following it. Please note, that note has to be in front of the entire expression ("not a = b"), not the 
+    comparison operator (wrong: "a not = b")
+
+        e.g:
+        > filter not age = 11
+
+
+Note that it is absolutely possible to stack filters over multiple lines. In other words, you can apply a filter to a data set, and your next filter
+will apply to the already filtered data set:
+
+    > filter age = 10 (filters original data set)
+    3 entries selected
+    > filter sex = weiblich (filters within the 3 entries selected through prior filter)
+    2 entries selected
+
+If you want to clear your filters without saving the filtered data to a new file (if you made a mistake for example), simply use the 
+
+    > filter clear
+    cleared all filters
+    5 entries selected
+
+command. Note that this will clear all filters (not just the last one) and you will be presented to work with the data set you originally read 
+out of the file you specified.
+
+------------------------------------------------------------------------------
+
+3. SAVING DATA
+
+When you applied all filters, you might want to save that data set - either for later use, or to open your newly created file to only work on a 
+much smaller data set entirely. Do so via the `save` command:
+
+    > file overall.csv
+    5 entries selected
+    > filter age = 10 and sex == weiblich
+    2 entries selected
+    > save new_file.csv
+    saved selected data to {path to your results folder}\new_file.csv 
+    cleared all selected data
+    to perform further operations, select a data set using the `file` command
+
+Note the feedback you get: First you will be shown the path to your file. This mostly serves means of confirmation, but in case you wondered, where
+your files are stored, there you go. Second it tells you that it cleared all selected data - This means, as the next line correctly informs you,
+that you first have to select a new file in order to keep analyzing. And apart from that, there's not a lot more to the `save` command - Just 
+know that in case the file you're writing to, already exists, its former data will be overriden. An algorithm to block this is only in place for
+the `overall.csv` file, everything else it will just override.
+
+------------------------------------------------------------------------------
+
+4. VIEWING DATA 
+
+Now that you know how to read, filter and save forms, it's very reasonable that you also want to view the content of forms. To do so, use the 
+`view` command. This will format your requests to make it prettier to look at, as well as offer you a very basic analysis tool. Let's assume
+you first executed the following commands:
+
+    > file overall.csv
+    5 entries selected
+    > filter age = 10 and sex == weiblich
+    2 entries selected
+
+Now you want to view how those two entries look. There's three ways you can personalize the `view` command: 
+
+    > view *
+
+This will format you the attributes for every selected form following the structure: `attibute name`: `attribute value` - 
+However, it will only show you the attributes that have a corresponding value. An example could look like this:
+
+    > view *
+    1.: {   age: 10
+            sex: weiblich
+            favourite-color: rot
+            fits-personality: teilweise
+}
+
+Note that it only outputs 4 values - This means, that all other 24 attributes of the form are empty, on other words, the person who took part in 
+the poll did not answer the question. 
+
+Now in the probably not very likely case, that you would like to view EVERY attribute of every file, even those empty attributes, simply add 
+`--view all` to the end of the command:
+
+    > view * --view all
+
+I won't put the output in here, for it would be a bunch of uneccesary lines, but those should be looking something like this:
+
+    culture: 
+    luck-color:
+    (...)
+
+Now having to view every attribute of every file and manually keeping score of how often an attribute has a specific value would be an incredible 
+waste of time and is not why this entire project exists in the first place. Let me present to you:
+
+    > view -`attribute name` (the '-' in here is important!)
+
+This will go through every selected form and only keep track of the value it has stored as your specfied attribute. It will then count them together
+and output, in descending order, how often which value exists in the selected data set. (Since I've been working on this documentation for quite a 
+while now and I feel like my explanations only get worse, ) Here's an example:
+
+    > file overall.csv
+    5 entries selected
+    > view -favourite-color
+        rot: 2
+        blau: 1
+        no answer: 1
+        lilablassblaukariert: 1
+
+As you can see, we told the program to look through a data set (containing 5 forms) and keep track of the `favourite-color` attribute. The 
+output is to be interpreted as the following: 
+    2 people have 'rot' as their favourite color
+    1 person each has 'blau' and 'lilablassblaukariert' as their favourite color
+    1 person did not answer the question
 
 ----
 (Bei Betrachten der Nutzer scheint mir eine deutsche Version angebracht) deutsch:
+
+*****coming soon*****
+
 
 ---
 list of commands:
@@ -150,6 +276,41 @@ list of commands:
         !! DOES NOT SUPPORT <= OR >= OPERATORS !!
 > filter clear
 
-> view 
+> view *
+> view * --view all
+> view -`attribute`
 
 > save `new_file`
+
+---
+list of attributes:
+[Formattiert als `Name` (`Datentyp` *) -> korrespondierende Frage auf Umfrageboten]
+[* int = Integer (Ganzzahl); boolean (entweder `True`, `False` (oder leer)); any (freier text)]
+
+age                 (int)                                       -> Alter
+sex                 (any {"männlich" / "weiblich" / "andere"})  -> Geschlecht
+culture             (any)                                       -> Welcher Kultur fühlst du dich zugehörig?
+luck-color          (any)                                       -> Welche Farbe signalisiert für dich Glück?
+luck-reason         (any)                                       -> Erkläre kurz, warum du diese Farbe [als "Glücksfarbe"] notiert hast.
+color-clauset       (any)                                       -> Welche Farbe hängt am häufigsten im Kleiderschrank?
+color-noble         (any)                                       -> Welche Farben wirken auf dich edel?
+color-highquality   (any)                                       -> Welche Farben würdest du als besonders hochwertig wahrnehmen?
+color-car           (any)                                       -> Welche Farbe hätte dein Traumauto?
+association-red     (any)                                       -> Was verbindest du mit der Farbe Rot?
+room-color          (any)                                       -> Welche Wandfarbe hat dein Zimmer?
+room-color-chosen   (boolean) (True = Ja / False = Nein)        -> Hast du diese Farbe bewusst gewählt?
+room-color-reason   (any)                                       -> [Grunndangabe im Falle einer Beantwortung der vorherigen Frage mit "Ja"]
+room-ambience       (any)                                       -> Wie beschreibst du die Atmosphäre in deinem Zimmer?
+color-learning      (any)                                       -> Bei welcher Wandfarbe kannst du am besten lernen?
+color-relaxing      (any)                                       -> Bei welcher Wandfarbe kannst du am besten entspannen?
+meaning-red         (any {"liebe" / "krieg"})                   -> Welches Wort trifft am ehesten auf die Farbe Rot zu?
+knows-flag          (boolean) (True = Ja / False = Nein)        -> Weißt du, wofür diese Flagge steht? 
+flag-meaning        (any)                                       -> [Antwort im Falle einer Beantwortung der vorherigen Frage mit "Ja"]
+check-ingredients   (int {1 bis 10}                             -> Wie oft schaust du auf Inhalts-/Schadstoffe auf Süßigkeitenpackungen?
+genre-schlager      (any)                                       -> Farbe des Musikstils Schlager
+genre-pop           (any)                                       -> Farbe des Musikstils Pop
+genre-classic       (any)                                       -> Farbe des Musikstils Klassik
+genre-rap           (any)                                       -> Farbe des Musikstils Rap
+genre-electro       (any)                                       -> Farbe des Musikstils Elektro
+favourite-color     (any)                                       -> Lieblingsfarbe
+fits-personality    {"True" / "False" / "teilweise"}            -> Stimmt deine Lieblingsfarbe mit deiner Persönlichkeit überein?
