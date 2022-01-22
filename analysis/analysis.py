@@ -84,6 +84,8 @@ def print_all_filenames():
 
 
 if __name__ == "__main__":
+    print("# BSQL v1.0\n# developed by GAP as part of the 'color-poll' project\n"
+    "# check README.txt or Dokumentation_Deutsch.txt for use guide\n\n")
     while True:
         try:
             run_console_dialogue()

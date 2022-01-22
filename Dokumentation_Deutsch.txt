@@ -1,0 +1,334 @@
+call-it-official documentation of "Bullshit Query Language" (short: BSQL)
+
+# teil des Projektes "color-poll" entwickelt von GAP
+# Werkzeug, um die Ergebnisse dieser Umfrage spezifisch zu analysieren
+# Autor: Emil Schläger
+# Name ist definitiv kein Abklatsch von SQL
+
+(Bei Betrachten der Nutzer scheint mir eine deutsche Version angebracht)
+
+Um den Dialog zu starten und auszuwerten, navigiere in den Ordner `analysis`, finde die Datei `analysis.exe` und führe sie aus. Im Prinzip dieselbe 
+Prozedur wie bei der Eingabe.
+
+------------------------------------------------------------------------------
+
+Hier findet sich eine Dokumentation davon, wie BSQL als Konsolendialog benutzt wird.
+AM ENDE DIESER DATEI BEFINDET SICH EINE KURZ-ÜBERSICHT MIT ALLEN BEFEHLEN UND ATTRIBUTNAMEN UND DEREN KORRESPONDIERENDEN FRAGEN!
+
+Bevor ich genauer auf den Syntax eingehe, mag es sich als wertvoll erweisen, zuerst eine kurze Übersicht über den vollständigen
+Prozess zu formulieren.. In BSQL, Abfragen folgen stets derselben Struktur:
+            1. den Inhalt einer Datei auslesen
+            2. die ausgewählten Daten filtern
+            3. die gefilterten Daten für spätere Nutzung speichern
+
+Es gibt selbstverständlich noch ein paar weitere Funktionen, die von dieser Grundstruktur etwas abweichen, aber im Großen und Ganzen wirst Du auf
+diese Weise mit BSQL arbeiten. Also fangen wir an damit, wie diese Struktur umgesetzt wird:
+
+------------------------------------------------------------------------------
+
+1. AUSWÄHLEN EINER DATEI
+
+Um an einem Datensatz zu arbeiten, muss dieser erst ausgewählt werden. Um dies zu tun, benutze das `file` Schlüsselwort gefolgt von der Datei, 
+an der du arbeiten willst. Hier ist `overall.csv` als Beispiel genutzt:
+
+    > file overall.csv
+
+Nach dem Bearbeiten des Befehls wird ausgegeben, wie viele Formulare in der Datei gespeicher sind. Das wird in etwa so aussehen:
+
+    > file overall.csv
+    5 entries selected
+
+Es ist sehr wahrscheinlich, dass Du nicht die Namen aller Dateien, die existieren, kennst. In diesem Fall, benutze folgenden Befehl:
+
+    > file *
+
+Dies wird eine Liste mit den Namen aller existierenden Dateien ausgeben, welche in etwa so aussehen sollte:
+
+    > file *
+    age10.csv
+    age11.csv
+    ...
+
+Beachte, dass der `file *` Befehl keine Datei auswählt, dass musst Du danach noch manuell tun.
+
+------------------------------------------------------------------------------
+
+2. FILTERN EINES DATENSATZES
+
+Oh je... Das war definitiv das Aufwändigste zu implementieren und ist, aus Sicht des Syntaxes, vermutlich auch das Komplizierteste zu verstehen.
+Die einfachen Dinge zuerst: Ein Filterungs-Befehl beginnt stets mit dem Wort `filter`, nach welchem Bedingungen spezifiziert werden können, nach 
+welchen der ausgewählte Datensatz dann gefiltert wird. Hier ist ein Beispiel für den Anfang:
+
+    > file overall.csv (Datei auswählen nicht vergessen :)
+    5 entries selected
+    > filter age = 10
+    3 entries selected (Du bekommst hier wieder Feedback, wie viele Formulare zu Deinen Bedingungen passen)
+
+In diesem Beispiel haben wir den Datensatz nach dem Attribut `age` gefiltert, genauer gesagt, wir haben jeden Eintrag ausgewählt, bei dem das `age`
+Attribut gleich 10 ist. So weit, so gut. Aber es wird komplexer: Zuallererst ist `age` nur eines von 27 Attributen, welche ein Formular besitzt. 
+Da jedes davon seinen eigenen einzigartigen Namen hat und Du wahrscheinlich nicht alle davon kennst, gibt es eine
+
+Des Weiteren gibt es mehr Vergleichs-Operatoren als `=`. Folgende, um genau zu sein:
+            =
+            ==
+            > (funktioniert nur beim Vergleich von Zahl-Attributen wie `age`)
+            < (funktioniert nur beim Vergleich von Zahl-Attributen wie `age`)
+
+------
+Schauen wir uns zuerst die einfachsten davon an - `<` und `>`:
+Sie repräsentieren  `kleiner als` and `größer als` und funktionieren nur bei Zahlen beinhaltenden Attributen. Eigentlich gibt es davon nur zwei:
+            `age`
+            `check-ingredients`
+Beachte, dass eine Anwendung dieser Operatoren auf einen Nicht-Integer Wert folgende Fehlermeldung zurückgibt:
+    
+    > filter culture > 4
+    '>' operator expects input of type <int>, <int>
+
+Da das Programm Integer(Ganzzahlen) erwartet, mündet die Eingabe einer Kommazahl in derselben Fehlermeldung:
+
+    > filter check-ingredients < 5.5
+    '<' operator expects input of type <int>, <int>
+
+-----
+Nun zu `=` und `==`:
+Für Nicht-JavaScript-Entwickler mag der Unterschied zwischen den beiden verwirrend wirken, aber tatsächlich ist er (in diesem Fall) recht trivial:
+            `=` vergleicht zwei Werte auf ÄHNLICHKEIT miteinander
+            `==` vergleicht zwei Werte auf EXAKTE GLEICHHEIT miteinander
+
+Um dem Ganzen ein wenig Sinn zu geben sei hier angemerkt, dass ich `=` primär für Fälle implementiert habe,
+in denen eine Frage auf dem Bogen mit zwei Antworten beantwortet wurde. Lass mich das anhand eines Beispiels erklären:
+
+    Nehmen wir an, es gibt ein Formular, in dem das Attribut `culture` als "deutsch, französich" eingetragen wurde. Eindeutig zwei verschiedene 
+    kulturelle Aspekte - Wenn Du also nach Kultur filterst, willst Du beide davon als voneinander unabhängig betrachten. Du tust also das folgende:
+
+        > filter culture = deutsch
+
+    In diesem Fall wird das Formular als zu dem Filter passend gesehen, da "deutsch, französich" ähnlich zu "deutsch" ist (ähnlich bedeutet 
+    in diesem Kontext, dass "deutsch" vollständig in "deutsch, französich" vorkommt).
+    
+    Im Gegensatz dazu, wenn du das folgende tust...: 
+
+        > filter culture == deutsch
+
+    ...wird das Formular die Filterbedingungen nicht erfüllen, da "deutsch, französich" nicht GENAU gleich zu "deutsch" ist.
+
+Jetzt fragst Du Dich vielleicht, ob es denn irgendeine Verwendung für `==` gibt. Ich finde, durchaus. Um das Beispiel von gerade eben wieder zurate 
+zu ziehen: Vielleicht willst Du nach jedem suchen, der sich NUR als französisch identifiziert. In diesem Fall eliminiert `==` jeden, der sich 
+wie in unserem Beispiel-Formular zusätzlich als etwas Anderes identifiziert von der Auswahl.
+
+Hier sei noch anzumerken, dass die beiden Operatoren beim Vergleich zweier Zahlen exakt gleich funktionieren.
+
+-----
+Aber das waren noch nicht alle Filter-Werkzeuge, die Dir zu Verfügung stehen. Du kannst einzelne Filterbedingungen aneinanderhängen, zum Beispiel:
+
+    > file overall.csv
+    5 entries selected
+    > filter age = 10 and sex = weiblich
+    2 entries selected
+
+Beachte das Wörtchen `and` in dieser Abfrage. Dieses Schlüsselwort nennt sich einen 'Logischen Operator', und du bist ihnen in Mathe oder NWT
+eventuell schon einmal begegnet. In BSQL gibt es drei davon:
+            and
+            or
+            not
+
+Zwar sind diese recht selbsterklärend, aber ich werde dennoch kurz über jeden davon gehen:
+
+    1. and
+    `and` ist sehr unkompliziert - Um als `wahr` zu gelten (oder "mit Deinen Filterbedingungen überein zu stimmen"), muss der Filter auf jeder Seite 
+    des Operators auf ein Formular zutreffen.
+
+        z.B: 
+        > filter age = 11 and sex == männlich
+
+    2. or
+    `or` gilt als wahr, wenn MINDESTENS einer der Filter auf jeder Seite wahr ist. Das mathematische `or` ist inklusiv, was bedeutet, dass es sich
+    vom umgangssprachlichen 'oder' (exlusiv, bzw. "Entweder oder") insofern unterscheidet, dass es auch als wahr gilt, wenn beide Filter um es herum 
+    als wahr gelten - In anderen Worten: Wenn Du einen Filter benutzt, in dem `or` vorkommt, muss ein Formular keine der einzelnen Bedingungen erfüllen,
+    um nicht ausgewählt zu werden.
+
+        z.B:
+        > filter age = 11 or sex == männlich
+
+    3. not
+    `not` negiert (wahr wird zu falsch und umgekehrt) die nachfolgende Aussage. Beachte bitte, dass `not` vor einer vollständigen Aussage stehen muss
+    ("not a = b") und nicht vor dem Vergleichsoperator (falsch: "a not = b").
+
+        z.B:
+        > filter not age = 11 and not sex == männlich
+
+
+Des Weiteren ist es absolut möglich, mehrere Filter über mehrere Zeilen hinweg zu "stapeln". In anderen Worten, Du kannst einen Datensatz filtern,
+und dein nächster Filter wird auf den bereits gefilterten Datensatz angewendet:
+
+    > filter age = 10 (filters den ursprünglichen Datensatz)
+    3 entries selected
+    > filter sex = weiblich (filters die durch den vorherigen Filter ausgewählten 3 Einträge)
+    2 entries selected
+
+Falls du deine Filter löschen willst, ohne die Daten davor zu speichern (wenn du zum Beispiel einen Fehler gemacht hast), benutze einfach den folgenden Befehl: 
+
+    > filter clear
+    cleared all filters
+    5 entries selected
+
+Beachte, dass dies ALLE Filter löscht (nicht nur den letzten) und du anschließend mit dem Datensatz präsentiert wirst, den du ursprünglich aus einer
+Datei ausgelesen hast.
+
+**
+Nur um das hier, der Vollständigkeit halber, einmal zu notieren: Filter löschen keine Formulare aus den Dateien, es gehen also durch Filtern eines 
+Datensatzes keine Daten verloren.
+
+------------------------------------------------------------------------------
+
+3. SPEICHERUNG VON DATEN
+
+Wenn Du alle Filter, die Du wolltest, auf einen Datensatz angewendet hast, willst Du diese gefilterten Formulare eventuel speichern - 
+Entweder, um später daran weiter zu arbeiten, oder um diese Datei aufzurufen und von vorne herein mit einem viel kleineren Datensatz 
+zu arbeiten. Dies tust Du mit Hilfe des `save` Befehls:
+
+    > file overall.csv
+    5 entries selected
+    > filter age = 10 and sex == weiblich
+    2 entries selected
+    > save new_file.csv
+    saved selected data to {Pfad zu Deinem results-Ordner}\new_file.csv 
+    cleared all selected data
+    to perform further operations, select a data set using the `file` command
+
+Besonders wichtig ist hierbei, dass Dein Dateiname bestimmte Vorgaben befolgt:
+            1. Leerzeichen  werden nicht unterstützt - Am Besten benutzt du Unterstriche als Ersatz
+            2. der Name MUSS in ".csv" enden - Auf diesem Dateiformat basiert das komplette Programm
+
+Beachte das Feedback, das Du erhältst: Zuerst wird dir der Absolutpfad zu deiner Datei ausgegeben. Dies geschieht in erster Linie aus Gründen der 
+Bestätigung, dass der Datensatz erfolgreich gespeichert wurde, aber falls Du dich fragen solltest, wo genau Deine Dateien gespeichert sind, hast Du 
+hier Deine Antwort. Danach informiert es Dich, dass es alle ausgewählten Daten leert (wieder: aus der ursprünglich ausgewählten Datei wird nichts 
+gelöscht) - Das bedeutet, wie die nächste Zeile dir korrekt mitteilt, dass Du erst eine neue Datei auswählen musst, bevor Du weiterarbeiten kannst.
+Und das war eigentlich alles zum `save` Befehl - Sei Dir nur bewusst, dass, sollte die von Dir angegebene Datei bereits existieren, die alten Daten 
+in dieser Datei mit den neuen überschrieben werden. Ein Stoppmechanismus existiert hierbei nur für die Datei `overall.csv`, alle anderen Dateien 
+werden schlicht und einfach überschrieben.
+
+------------------------------------------------------------------------------
+
+4. EINSEHEN VON AUSGEWÄHLTEN FORMULAREN
+
+Jetzt wo Du weißt, wie Du Formulare auswählen, filtern und speichern kannst, ist es durchaus ganz praktisch, Formulare auch einsehen zu können.
+Dies ist möglich mit dem `view` Befehl. Er formattiert die aktuell ausgewählten Formulare möglichst übersichtlich und liefert ein simples Werkzeug
+zur Auswertung. Nehmen wir an, Du hast zuerst folgende Befehle ausgeführt:
+
+    > file overall.csv
+    5 entries selected
+    > filter age = 10 and sex == weiblich
+    2 entries selected
+
+Jetzt interessiert Dich, wie diese zwei Einträge aussehen. Es gibt drei Wege, den `view` Befehl zu modifizieren: 
+
+    > view *
+
+Dies wird Dir die Attribute jedes Formulars in folgender Struktur ausgeben: `attibute name`: `attribute value` - Allerdings tut es das nur für 
+die Attribute eines Formulars, die tatsächlich einen zugeordneten Wert haben. Ein Beispiel könnte so aussehen:
+
+    > view *
+    1.: {   age: 10
+            sex: weiblich
+            favourite-color: rot
+            fits-personality: teilweise
+}
+
+Wie Du siehst, gibt das Programm nur vier Attribute zurück - Das bedeutet, dass die anderen 23 Attribute des Formulars leer sind, oder in anderen 
+Worten, die Person, die an der Umfrage teilgenommen hat, hat die entsprechenden Fragen nicht beantwortet.
+
+Für den vermutlich eher seltenen Fall, dass Du ALLE Attribute eines Formulars, auch die leeren, einsehen willst, platziere einfach ein `--view all` 
+am Ende des Befehls:
+
+    > view * --view all
+
+Ich werde hier nicht einen kompletten Beispiel-Output hinschreiben, weil das unnötige Platzverschwendung wäre, aber leere Attribute sehen in der 
+Ausgabe folgendermaßen aus:
+
+    culture: 
+    luck-color:
+    (...)
+
+Nun wäre es eine unfassbare Zeitverschwendung (und würde dieses komplette Projekt effektiv vollkommen unnötig machen), jedes Attribut jedes Formulars 
+einzeln durchzugehen und manuell Strichlisten zu führen. Deshalb existiert folgender Befehl:
+
+    > view -`attribute name` (Das Minuszeichen hier ist wichtig!)
+
+Dies wird druch jedes ausgewählte Formular gehen und sich lediglich merken, was dieses als das von Dir spezifizierte Attribut gespeichert hat. 
+Anschließend werden alle Werte zusammengezählt und, in absteigender Reihenfolge, ausgegeben. Um diese holprige Erklärung zu veranschaulichen, hier
+ein Beispiel:
+
+    > file overall.csv
+    5 entries selected
+    > view -favourite-color
+        rot: 2
+        blau: 1
+        no answer: 1
+        lilablassblaukariert: 1
+
+Wie Du sehen kannst, wurde das Programm beauftragt, sich durch einen Datensatz (welcher 5 Formulare beinhaltet) zu arbeiten und dabei das Attribut 
+`favourite-color` zu betrachten. Die Ausgabe ist folgendermaßen zu lesen: 
+    2 Leute haben 'rot' als ihre Lieblingsfarbe angegeben
+    1 Person jeweils hat 'blau' und 'lilablassblaukariert' als ihre Lieblingsfarbe angegeben
+    1 Person hat die Frage nicht beantwortet
+
+
+Und das war's! Ein praktisch nichts-könnender Konsolendialog in gut 260 Zeilen erklärt. Ich habe mein Bestes gegeben, hier alles so anschaulich und 
+verständlich wie möglich zu erklären. Sollten immernoch irgendwelche Fragen ungeklärt sein, stehe ich stets zu Rückfrage bereit - Andererseits kannst 
+Du praktisch nichts kaputt machen, im Zweifel einfach mal ausprobieren. Vielleicht habe ich ja sogar irgendwann noch Zeit, ein grafisches Interface 
+zu gestalten. 
+
+-----------------------------------------------
+list of commands:
+> file `filename`
+> file *
+
+> filter not `filter` and `filter` or `filter` ...
+    (`filter`:
+        a = b
+        a == b
+        a > b
+        a < b )
+
+        !! DOES NOT SUPPORT <= OR >= OPERATORS !!
+> filter clear
+
+> view *
+> view * --view all
+> view -`attribute`
+
+> save `new_file`
+
+---
+list of attributes:
+[Formattiert als `Name` (`Datentyp` *) -> korrespondierende Frage auf Umfrageboten]
+[* int = Integer (Ganzzahl); boolean (entweder `True`, `False` (oder leer)); any (freier text)]
+
+age                 (int)                                       -> Alter
+sex                 (any {"männlich" / "weiblich" / "andere"})  -> Geschlecht
+culture             (any)                                       -> Welcher Kultur fühlst du dich zugehörig?
+luck-color          (any)                                       -> Welche Farbe signalisiert für dich Glück?
+luck-reason         (any)                                       -> Erkläre kurz, warum du diese Farbe [als "Glücksfarbe"] notiert hast.
+color-clauset       (any)                                       -> Welche Farbe hängt am häufigsten im Kleiderschrank?
+color-noble         (any)                                       -> Welche Farben wirken auf dich edel?
+color-highquality   (any)                                       -> Welche Farben würdest du als besonders hochwertig wahrnehmen?
+color-car           (any)                                       -> Welche Farbe hätte dein Traumauto?
+association-red     (any)                                       -> Was verbindest du mit der Farbe Rot?
+room-color          (any)                                       -> Welche Wandfarbe hat dein Zimmer?
+room-color-chosen   (boolean) (True = Ja / False = Nein)        -> Hast du diese Farbe bewusst gewählt?
+room-color-reason   (any)                                       -> [Grundangabe im Falle einer Beantwortung der vorherigen Frage mit "Ja"]
+room-ambience       (any)                                       -> Wie beschreibst du die Atmosphäre in deinem Zimmer?
+color-learning      (any)                                       -> Bei welcher Wandfarbe kannst du am besten lernen?
+color-relaxing      (any)                                       -> Bei welcher Wandfarbe kannst du am besten entspannen?
+meaning-red         (any {"liebe" / "krieg"})                   -> Welches Wort trifft am ehesten auf die Farbe Rot zu?
+knows-flag          (boolean) (True = Ja / False = Nein)        -> Weißt du, wofür diese Flagge steht? 
+flag-meaning        (any)                                       -> [Antwort im Falle einer Beantwortung der vorherigen Frage mit "Ja"]
+check-ingredients   (int {1 bis 10}                             -> Wie oft schaust du auf Inhalts-/Schadstoffe auf Süßigkeitenpackungen?
+genre-schlager      (any)                                       -> Farbe des Musikstils Schlager
+genre-pop           (any)                                       -> Farbe des Musikstils Pop
+genre-classic       (any)                                       -> Farbe des Musikstils Klassik
+genre-rap           (any)                                       -> Farbe des Musikstils Rap
+genre-electro       (any)                                       -> Farbe des Musikstils Elektro
+favourite-color     (any)                                       -> Lieblingsfarbe
+fits-personality    {"True" / "False" / "teilweise"}            -> Stimmt deine Lieblingsfarbe mit deiner Persönlichkeit überein?
