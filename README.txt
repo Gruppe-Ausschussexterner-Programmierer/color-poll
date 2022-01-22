@@ -7,10 +7,14 @@ call-it-official documentation of "Bullshit Query Language" (short: BSQL)
 -----
 english:
 
+To start the console dialogue, navigate into the `analysis` folder and execute `analysis.exe`. It basically is the same procedure as last time.
+
+------------------------------------------------------------------------------
+
 In here, you will find a documentation of how to use the console dialogue.
 AT THE VERY END OF THIS FILE, THERE WILL BE A QUICK OVERVIEW ON ALL COMMANDS AND ALL FORM ATTRIBUTE NAMES AS WELL AS THEIR CORRESPONDING QUESTIONS.
 
-Before going into greater detail on the syntax, it might be of value to get a quick overview on the entire process. In BSQL, quiries always
+Before going into greater detail on the syntax, it might be of value to get a quick overview on the entire process. In BSQL, queries always
 follow the same structure:
             1. reading the content of a file
             2. filtering the selected content
@@ -61,8 +65,8 @@ filtered. Here's an example to start:
 
 In this example, we filterd the data by the attribute `age`, more specifically we selected every entry, where the `age` attibute is equal to 10. So far,
 so good. But it gets more complicated: First of all, `age` is only one of 27 attributes a form has. Since each one has its own name and chances are, 
-you won't know all of them, there is a list of every attribute name at the END OF THIS FILE. (There will also be an image or a pdf file relating
-all of them to their respective question of the original poll sheet).
+you won't know all of them, there is a list of every attribute name at the END OF THIS FILE linking them to their corresponding questions on the 
+analog poll sheet.
 
 Futhermore, there's more comparison operators than `=`. All of the following, to be exact:
             =
@@ -76,6 +80,7 @@ They represent `smaller than` and `larger than`, and only work on attributes con
             `age`
             `check-ingredients`
 Notice, that if you try to use those operators on a non-integer attribute, you will receive the following error message:
+    
     > filter culture > 4
     '>' operator expects input of type <int>, <int>
 
@@ -120,7 +125,7 @@ But that's not it for all the filtering tools that are at your disposal. You can
     > filter age = 10 and sex = weiblich
     2 entries selected
 
-Notice the `and` key word in this quiry. This is called a 'logical operator', and you might have run across these in math or NWT classes.
+Notice the `and` key word in this query. This is called a 'logical operator', and you might have run across these in math or NWT classes.
 In BSQL, there are three of them:
             and
             or
@@ -149,7 +154,7 @@ Whilst probably quite self-explanatory, I'll shortly go over each of them:
     comparison operator (wrong: "a not = b")
 
         e.g:
-        > filter not age = 11
+        > filter not age = 11 and not sex == männlich
 
 
 Note that it is absolutely possible to stack filters over multiple lines. In other words, you can apply a filter to a data set, and your next filter
@@ -169,6 +174,10 @@ If you want to clear your filters without saving the filtered data to a new file
 command. Note that this will clear all filters (not just the last one) and you will be presented to work with the data set you originally read 
 out of the file you specified.
 
+
+**
+To have that noted somewhere: Filtering data won't delete any forms from files, you don't have to worry about losing data when filtering.
+
 ------------------------------------------------------------------------------
 
 3. SAVING DATA
@@ -180,10 +189,14 @@ much smaller data set entirely. Do so via the `save` command:
     5 entries selected
     > filter age = 10 and sex == weiblich
     2 entries selected
-    > save new_file.csv
+    > save new_file.csv 
     saved selected data to {path to your results folder}\new_file.csv 
     cleared all selected data
     to perform further operations, select a data set using the `file` command
+
+It hereby is of absolute importance that your file name conforms to the following requirements:
+            1. spaces are not supported - use underscores instead
+            2. the name MUST end in ".csv" - the entire program is built on this file format
 
 Note the feedback you get: First you will be shown the path to your file. This mostly serves means of confirmation, but in case you wondered, where
 your files are stored, there you go. Second it tells you that it cleared all selected data - This means, as the next line correctly informs you,
@@ -255,13 +268,11 @@ output is to be interpreted as the following:
     1 person each has 'blau' and 'lilablassblaukariert' as their favourite color
     1 person did not answer the question
 
-----
-(Bei Betrachten der Nutzer scheint mir eine deutsche Version angebracht) deutsch:
+And that's it - A console dialogue, which can essentially barely do anything, explained in a little over 260 lines. I tried my best to explain
+everything as simple and easy to understand as I could, however, if there still are questions, I'm happy to help you. On the other hand, you
+practically can't destroy anything - so when in doubt, just try it out. Maybe I'll even have time to give you a graphical interface at some point.
 
-*****coming soon*****
-
-
----
+-------------------------------------
 list of commands:
 > file `filename`
 > file *
