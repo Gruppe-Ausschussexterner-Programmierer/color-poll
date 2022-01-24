@@ -275,9 +275,9 @@ everything as simple and easy to understand as I could, however, if there still 
 practically can't destroy anything - so when in doubt, just try it out. Maybe I'll even have time to give you a graphical interface at some point.
 
 ---
-In terms of visualizing your data, there isn't anything in BSQL currently, and I highly doubt there ever will be. And that is that way because of a very simple reason: There's no need for me to program something to do this, when there's a million free tools for you online that offer way more flexibility than I ever could. Let me give you a site i found in a 10 second google search that lets you create pie charts and export them:
+In terms of visualizing your data, there isn't anything in BSQL currently, and I highly doubt there ever will be. And that is that way because of a very simple reason: There's no need for me to program something to do this, when there's a million free tools for you online that offer way more flexibility than I ever could. Let me give you a site i found in a 10 second google search that lets you create all kinds of charts and export them:
 
-https://www.meta-chart.com/pie#
+https://meta-chart.com
 
 You should be able to find sites like this in no time. And whilst I agree that pasting every data into an online tool might 
 seem like a little bit of a grind, just think about the fact that creating a visualization tool myself would have probably taken 

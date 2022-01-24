@@ -285,9 +285,9 @@ zu gestalten.
 Was das Visualisieren Deiner Daten angeht, gibt es momentan nichts in BSQL und ich bezweifle, dass es da je etwas geben wird. Und 
 das aus einem sehr einfachen Grund: Es gibt einfach keine Notwendigkeit, so etwas selbst zu programmieren, wenn es tausende online-
 tools dafür gibt, welche außerdem viel mehr Flexibilität erlauben als ich das je könnte. Hier ist zum Beispiel eine Seite für das 
-erstellen und exportieren von Kreisdiagrammen, welche ich in einer 10-sekunden-Google-Suche gefunden habe:
+erstellen und exportieren von allen möglichen Diagrammen, welche ich in einer 10-sekunden-Google-Suche gefunden habe:
 
-https://www.meta-chart.com/pie#
+https://meta-chart.com
 
 Du solltest ähnliche Seiten ohne Zeitaufwand finden. Und obwohl ich zustimme, dass es etwas langwierig erscheinen mag, alle Daten 
 einzeln in ein online-Tool zu kopieren, will ich auch anmerken, dass es mich mindestens eine Woche gebraucht hätte, eine 
