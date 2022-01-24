@@ -4,6 +4,7 @@ call-it-official documentation of "Bullshit Query Language" (short: BSQL)
 # Werkzeug, um die Ergebnisse dieser Umfrage spezifisch zu analysieren
 # Autor: Emil Schläger
 # Name ist definitiv kein Abklatsch von SQL
+# bitte entschuldige die seltsamen Zeilenumbrüche, aber Textdateien sind da sehr unpraktisch
 
 (Bei Betrachten der Nutzer scheint mir eine deutsche Version angebracht)
 
@@ -278,6 +279,19 @@ Und das war's! Ein praktisch nichts-könnender Konsolendialog in gut 260 Zeilen 
 verständlich wie möglich zu erklären. Sollten immernoch irgendwelche Fragen ungeklärt sein, stehe ich stets zu Rückfrage bereit - Andererseits kannst 
 Du praktisch nichts kaputt machen, im Zweifel einfach mal ausprobieren. Vielleicht habe ich ja sogar irgendwann noch Zeit, ein grafisches Interface 
 zu gestalten. 
+
+
+---
+Was das Visualisieren Deiner Daten angeht, gibt es momentan nichts in BSQL und ich bezweifle, dass es da je etwas geben wird. Und 
+das aus einem sehr einfachen Grund: Es gibt einfach keine Notwendigkeit, so etwas selbst zu programmieren, wenn es tausende online-
+tools dafür gibt, welche außerdem viel mehr Flexibilität erlauben als ich das je könnte. Hier ist zum Beispiel eine Seite für das 
+erstellen und exportieren von Kreisdiagrammen, welche ich in einer 10-sekunden-Google-Suche gefunden habe:
+
+https://www.meta-chart.com/pie#
+
+Du solltest ähnliche Seiten ohne Zeitaufwand finden. Und obwohl ich zustimme, dass es etwas langwierig erscheinen mag, alle Daten 
+einzeln in ein online-Tool zu kopieren, will ich auch anmerken, dass es mich mindestens eine Woche gebraucht hätte, eine 
+Visualisierung selbst zu entwickeln - Hab etwas Mitleid mit den Entwicklern (:
 
 -----------------------------------------------
 list of commands:
