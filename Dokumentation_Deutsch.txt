@@ -16,7 +16,7 @@ Hier findet sich eine Dokumentation davon, wie BSQL als Konsolendialog benutzt w
 AM ENDE DIESER DATEI BEFINDET SICH EINE KURZ-ÜBERSICHT MIT ALLEN BEFEHLEN UND ATTRIBUTNAMEN UND DEREN KORRESPONDIERENDEN FRAGEN!
 
 Bevor ich genauer auf den Syntax eingehe, mag es sich als wertvoll erweisen, zuerst eine kurze Übersicht über den vollständigen
-Prozess zu formulieren.. In BSQL, Abfragen folgen stets derselben Struktur:
+Prozess zu formulieren.. In BSQL folgen Abfragen stets derselben Struktur:
             1. den Inhalt einer Datei auslesen
             2. die ausgewählten Daten filtern
             3. die gefilterten Daten für spätere Nutzung speichern
