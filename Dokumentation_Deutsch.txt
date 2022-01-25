@@ -119,6 +119,16 @@ wie in unserem Beispiel-Formular zusätzlich als etwas Anderes identifiziert von
 
 Hier sei noch anzumerken, dass die beiden Operatoren beim Vergleich zweier Zahlen exakt gleich funktionieren.
 
+Jetzt fragst Du dich vielleicht, wie du kontrollieren kannst, ob ein Attribut eines Formulars leer ist. Wie sich herausstellte, ist dies mit den 
+restlichen Operatoren nicht möglich. Dafür gibt es für diesen Fall einen eigenen Operator:
+
+    > filter culture is null
+    1 entries selected          (Jup - Du wirst immer den Plural "entries" ausgegeben bekommen)
+
+Das `is null` Schlüsselwort durchsucht den Datensatz nach Formularen, in denen das von dir spezifizierte Attribut leer ist. Abgesehen davon, dass als 
+zweiter Parameter immer "null" angegeben werden muss (sonst findet es einfach gar keine Einträge), funktioniert dieser Operator genau so wie die 
+anderen.
+
 -----
 Aber das waren noch nicht alle Filter-Werkzeuge, die Dir zu Verfügung stehen. Du kannst einzelne Filterbedingungen aneinanderhängen, zum Beispiel:
 
@@ -306,6 +316,7 @@ list of commands:
         a < b )
 
         !! DOES NOT SUPPORT <= OR >= OPERATORS !!
+> filter `attribute` is null
 > filter clear
 
 > view *

@@ -182,6 +182,8 @@ def evaluate_filters(filter, row):
             except:
                 print("'>' operator expects input of type <int>, <int>")
                 raise Exception
+        elif operator == "is" and value == "null":
+            return is_null(get_value(row, name))
     else:
         return filter
 
@@ -226,6 +228,8 @@ def larger_than(a, b):
         raise Exception
     return a > b
 
+def is_null(a):
+    return a == '' or a == None
 #--------------------------------------------------------------------------------------------------------------------------------
 #@REGION logical operators
 
@@ -247,6 +251,7 @@ def is_comparison_operator(token):
     if token == '==': return True
     if token == '>': return True
     if token == '<': return True
+    if token == 'is': return True
     return False
 
 #--------------------------------------------------------------------------------------------------------------------------------

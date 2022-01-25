@@ -119,6 +119,15 @@ people, who only identify as french. In this case, using `==` will eliminate all
 
 Note that when comparing numbers, both of these work exactly the same.
 
+Now you might wonder, how you check for attributes being empty. Turns out, that's not actually possible with the operators above. However, there is 
+a neat little command you can use for that:
+
+    > filter culture is null
+    1 entries selected          (yes, you'll always get the plural of `entry`)
+
+The `is null` key word will filter the data set for forms in which your specified attribute is empty. Apart from needing its second parameter specified 
+as "null" (otherwise it won't find any entries), it acts just like any other comparison operator.
+
 -----
 But that's not it for all the filtering tools that are at your disposal. You can also chain individual filters together, for example:
 
@@ -296,6 +305,7 @@ list of commands:
         a < b )
 
         !! DOES NOT SUPPORT <= OR >= OPERATORS !!
+> filter `attribute` is null
 > filter clear
 
 > view *
