@@ -109,11 +109,12 @@ def view(cm):
             print(20 * "-")
             num += 1
 
+    #this code has to be here for this if statement is also true when the following is -> better comments will be found there
     elif command[0][:2] == "--":
         color = command[0][2:].lower()  # removes '--' from string
         for row in data_selected:
             for entry in enumerate(row):
-                split_values = entry[1].split(',')  # deals with commas
+                split_values = entry[1].replace(';', ',').split(',')  # deals with commas
                 for value in split_values:
                     if value.replace(' ', '') == color: #replace function deals with spaces on edge of value
                         try:
@@ -126,14 +127,14 @@ def view(cm):
         index = get_column(attribute)
 
         for row in data_selected:
-            if type(index) == tuple:
+            if type(index) == tuple: #due to stupid design, some attributes have multiple values, thus returning tuples
                 val1 = row[index[0]]
                 val2 = row[index[1]]
-                value = str(val1) + "," + str(val2)
+                value = str(val1) + "," + str(val2) #just joining the attributes together to treat them as any other attribute
             else:
                 value = str(row[index]).lower()
             #splitting value in case it is a list seperated with commas
-            split_values = value.split(',')
+            split_values = value.replace(';', ',').split(',') #replace() handles semicolons as delimeter as well
             for val in split_values:
                 if len(val) >= 1: #prevents empty attributes from crashing application
                     val = val.replace(' ', '')
