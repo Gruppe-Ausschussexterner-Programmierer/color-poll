@@ -99,6 +99,7 @@ def view(cm):
     except IndexError:
         view_nones = False
 
+    values: dict = {}
     if command[0] == '*':
         num = 1 #ui sugar
         for row in data_selected:
@@ -107,11 +108,23 @@ def view(cm):
             print("}")
             print(20 * "-")
             num += 1
+
+    elif command[0][:2] == "--":
+        color = command[0][2:]  # removes '--' from string
+        for row in data_selected:
+            for entry in enumerate(row):
+                split_values = entry[1].split(',')  # deals with commas
+                for value in split_values:
+                    if value.replace(' ', '') == color: #replace function deals with spaces on edge of value
+                        try:
+                            values[get_column_name(entry[0])] += 1
+                        except KeyError:
+                            values[get_column_name(entry[0])] = 1
+
     elif command[0][0] == '-':
         attribute = command[0][1:] #cuts off first character
         index = get_column(attribute)
 
-        values : dict = {}
         for row in data_selected:
             if type(index) == tuple:
                 val1 = row[index[0]]
@@ -123,10 +136,7 @@ def view(cm):
             split_values = value.split(',')
             for val in split_values:
                 if len(val) >= 1: #prevents empty attributes from crashing application
-                    if val[0] == " ":
-                        val = val[1:]
-                    if val[-1] == ' ':
-                        val = val[:-1]
+                    val = val.replace(' ', '')
                 else:
                     val = "no answer"
                 
@@ -134,10 +144,11 @@ def view(cm):
                     values[val] += 1
                 except KeyError: #creates entry if not yet existant
                     values[val] = 1
-        #returns values in `values` sorted from highest to lowest as a list of tuples
-        values_sorted = sorted(values.items(), key=operator.itemgetter(1), reverse=True)
-        for value_pair in values_sorted:
-            print("\t{0[0]}: {0[1]}".format(value_pair))
+    
+    #returns values in `values` sorted from highest to lowest as a list of tuples
+    values_sorted = sorted(values.items(), key=operator.itemgetter(1), reverse=True)
+    for value_pair in values_sorted:
+        print("\t{0[0]}: {0[1]}".format(value_pair))
             
     
 #--------------------------------------------------------------------------------------------------------------------------------

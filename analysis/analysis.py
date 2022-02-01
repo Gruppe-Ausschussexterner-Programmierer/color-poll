@@ -7,7 +7,7 @@ WORKING_DIR = os.path.abspath(os.path.dirname(__file__))
 RESULTS_DIR = os.path.abspath(WORKING_DIR + "/../.data/results/")
 
 
-#TODO command: isnull as operator to check for an empty entry
+#TODO functionality: filter for colour? (or at least view occurances of attributes per colour)
 #TODO functionality: add syntactically more helpful error handling
 #TODO command: on save: select a way to sort entries
 #TODO command: help command showing every possible command and a brief description of it

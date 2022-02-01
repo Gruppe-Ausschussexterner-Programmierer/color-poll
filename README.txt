@@ -240,7 +240,7 @@ However, it will only show you the attributes that have a corresponding value. A
             sex: weiblich
             favourite-color: rot
             fits-personality: teilweise
-}
+    }
 
 Note that it only outputs 4 values - This means, that all other 24 attributes of the form are empty, on other words, the person who took part in 
 the poll did not answer the question. 
