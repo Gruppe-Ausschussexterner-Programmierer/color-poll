@@ -6,6 +6,9 @@ call-it-official documentation of "Bullshit Query Language" (short: BSQL)
 # name is definitely not a knock-off of SQL
 # please excuse the awkward line wrapping, but text files are a little impractical in that regard
 
+#NOTE: I tried to offer as much ways of analysis as possible. If, for some reason, you want to do something that is not possible with the 
+tools currently at your disposal, feel free to contact me and I'll do my best do implement something to help you.
+
 -----
 english:
 
@@ -278,6 +281,17 @@ output is to be interpreted as the following:
     2 people have 'rot' as their favourite color
     1 person each has 'blau' and 'lilablassblaukariert' as their favourite color
     1 person did not answer the question
+
+The exact same thing is also possible for keeping track of specific colors:
+
+    > view --grün (again, the '--' here is important for the program to distinguish color from attribute)
+        luck-color: 4
+        room-color: 1
+        color-car: 1
+
+This shows you how often your specified color is value to each attribute. To put this into words for this example:
+    green was given as a color of luck 4 times
+    green was given as a color of a person's room or dream car once each
 
 And that's it - A console dialogue, which can essentially barely do anything, explained in a little over 260 lines. I tried my best to explain
 everything as simple and easy to understand as I could, however, if there still are questions, I'm happy to help you. On the other hand, you

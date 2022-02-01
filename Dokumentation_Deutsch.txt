@@ -6,6 +6,11 @@ call-it-official documentation of "Bullshit Query Language" (short: BSQL)
 # Name ist definitiv kein Abklatsch von SQL
 # bitte entschuldige die seltsamen Zeilenumbrüche, aber Textdateien sind da sehr unpraktisch
 
+#ANMERKUNG: Ich habe versucht, so viele Möglichkeiten zur Analyse zu bieten wie möglich. Solltest Du jedoch aus irgendeinem Grund etwas tun wollen,
+was sich mit den aktuellen Mitteln nicht verwirklichen lässt, stehe ich für Rückmeldung bereit und werde mein Bestes geben, etwas zu implementieren,
+was Deinem Wunsch beikommt.
+
+-----
 (Bei Betrachten der Nutzer scheint mir eine deutsche Version angebracht)
 
 Um den Dialog zu starten und auszuwerten, navigiere in den Ordner `analysis`, finde die Datei `analysis.exe` und führe sie aus. Im Prinzip dieselbe 
@@ -284,6 +289,16 @@ Wie Du sehen kannst, wurde das Programm beauftragt, sich durch einen Datensatz (
     1 Person jeweils hat 'blau' und 'lilablassblaukariert' als ihre Lieblingsfarbe angegeben
     1 Person hat die Frage nicht beantwortet
 
+Auf dieselbe Weise können auch spezifische Farben beobachtet werden:
+
+    > view --grün (auch hier ist das '--' wichtig, damit das Program Farben von Attributen unterscheiden kann)
+        luck-color: 4
+        room-color: 1
+        color-car: 1
+
+Der Output sagt Dir, wie oft Deine spezifizierte Farbe der Wert für jedes Attribut ist. Um das anhand des Beispliels auszuformulieren:
+    Grün wurde 4 mal als Glücksfarbe angegeben
+    gGrün wurde je ein mal als die Zimmerfarbe und Farbe des Traumautos einer Person angegeben
 
 Und das war's! Ein praktisch nichts-könnender Konsolendialog in gut 260 Zeilen erklärt. Ich habe mein Bestes gegeben, hier alles so anschaulich und 
 verständlich wie möglich zu erklären. Sollten immernoch irgendwelche Fragen ungeklärt sein, stehe ich stets zu Rückfrage bereit - Andererseits kannst 

@@ -110,7 +110,7 @@ def view(cm):
             num += 1
 
     elif command[0][:2] == "--":
-        color = command[0][2:]  # removes '--' from string
+        color = command[0][2:].lower()  # removes '--' from string
         for row in data_selected:
             for entry in enumerate(row):
                 split_values = entry[1].split(',')  # deals with commas
@@ -147,6 +147,8 @@ def view(cm):
     
     #returns values in `values` sorted from highest to lowest as a list of tuples
     values_sorted = sorted(values.items(), key=operator.itemgetter(1), reverse=True)
+    if len(values_sorted) == 0:
+        print("no entries match the parameter")
     for value_pair in values_sorted:
         print("\t{0[0]}: {0[1]}".format(value_pair))
             
@@ -216,7 +218,7 @@ def format_row(row : list, view_all : bool):
 
 def double_equals(a, b):
     try:
-        return int(a) == int(b)
+        return str(a).lower() == str(b).lower()
     except:
         return a == b
 
