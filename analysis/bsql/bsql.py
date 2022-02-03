@@ -73,11 +73,10 @@ def filter(cm):
 
 
 def save(nf):
-    global data_filtered
     global data_selected
 
     
-    csv.override_csv(nf, data_filtered)
+    csv.override_csv(nf, data_selected)
     print("\nsaved selected data to " + nf)
     data_selected = None
     data_filtered = None
