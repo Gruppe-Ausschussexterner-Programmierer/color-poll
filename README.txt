@@ -293,7 +293,15 @@ This shows you how often your specified color is value to each attribute. To put
     green was given as a color of luck 4 times
     green was given as a color of a person's room or dream car once each
 
-And that's it - A console dialogue, which can essentially barely do anything, explained in a little over 260 lines. I tried my best to explain
+If you want to save this output to a file for later use, add a `--save` behind the query:
+
+    > view --grün --save
+    Enter file name to store input in: (enter a file name here, ENDING IN ".txt" (e.g.: "output.txt"))
+                                        Note: If the file already exists, it will get overriden.
+    Your output was saved in (directory to your file)
+
+
+And that's it - A console dialogue, which can essentially barely do anything, explained in a little over 300 lines. I tried my best to explain
 everything as simple and easy to understand as I could, however, if there still are questions, I'm happy to help you. On the other hand, you
 practically can't destroy anything - so when in doubt, just try it out. Maybe I'll even have time to give you a graphical interface at some point.
 
@@ -325,6 +333,8 @@ list of commands:
 > view *
 > view * --view all
 > view -`attribute`
+> view --`color`
+> view (identifier) --save 
 
 > save `new_file`
 

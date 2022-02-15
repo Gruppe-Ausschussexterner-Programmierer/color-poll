@@ -3,6 +3,10 @@
 
 from lib import file as csv
 import operator
+from os import path, makedirs
+
+WORKING_DIR = path.abspath(path.dirname(__file__))
+OUTPUT_DIR = path.abspath(WORKING_DIR + "/../../.data/output/")
 
 FILE_DATA = None #never modified, always kept to revert filters
 data_selected = None
@@ -99,13 +103,15 @@ def view(cm):
         view_nones = False
 
     values: dict = {}
+    star_operator = False
     if command[0] == '*':
+        star_operator = True
+        output = []
         num = 1 #ui sugar
         for row in data_selected:
-            print(str(num) + ".: {", end='')
-            print(format_row(row, view_nones))
-            print("}")
-            print(20 * "-")
+            output.append(str(num) + ".: {" + format_row(row, view_nones))
+            output.append("}")
+            output.append(20 * "-")
             num += 1
 
     #this code has to be here for this if statement is also true when the following is -> better comments will be found there
@@ -145,12 +151,25 @@ def view(cm):
                 except KeyError: #creates entry if not yet existant
                     values[val] = 1
     
-    #returns values in `values` sorted from highest to lowest as a list of tuples
-    values_sorted = sorted(values.items(), key=operator.itemgetter(1), reverse=True)
-    if len(values_sorted) == 0:
-        print("no entries match the parameter")
-    for value_pair in values_sorted:
-        print("\t{0[0]}: {0[1]}".format(value_pair))
+    #only executes this on specification of attribute/color
+    if not star_operator:
+        #returns values in `values` sorted from highest to lowest as a list of tuples
+        values_sorted = sorted(values.items(), key=operator.itemgetter(1), reverse=True)
+        if len(values_sorted) == 0:
+            print("no entries match the parameter")
+        
+        occurance_count = 0
+        output = []
+        for value_pair in values_sorted:
+            occurance_count += value_pair[1]
+            #print("\t{0[0]}: {0[1]}".format(value_pair))
+            output.append("\t{0[0]}: {0[1]}".format(value_pair))
+        #print("\n\ttotal: {}".format(occurance_count))
+        output.append("\n\ttotal: {}".format(occurance_count))
+    if command[-1] == "--save":
+        save_output(output)
+    else:
+        for line in output: print(line)
             
     
 #--------------------------------------------------------------------------------------------------------------------------------
@@ -302,3 +321,19 @@ def get_column(col : str):
             return entries.index(col)
         except :
             return None
+
+#--------------------------------------------------------------------------------------------------------------------------------
+#@REGION file operations
+
+#why
+#recursion
+#what
+#am
+#i
+#doing
+def save_output(output: list):
+    dir = OUTPUT_DIR + "\\" + input("Enter file name to store input in: ")
+    with open(dir, "w+") as f:
+        for line in output:
+            f.write(line + "\n")
+    print("Your output was saved in " + dir)

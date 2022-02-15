@@ -300,7 +300,14 @@ Der Output sagt Dir, wie oft Deine spezifizierte Farbe der Wert für jedes Attri
     Grün wurde 4 mal als Glücksfarbe angegeben
     gGrün wurde je ein mal als die Zimmerfarbe und Farbe des Traumautos einer Person angegeben
 
-Und das war's! Ein praktisch nichts-könnender Konsolendialog in gut 260 Zeilen erklärt. Ich habe mein Bestes gegeben, hier alles so anschaulich und 
+Wenn Du die Ausgabe für spätere Nutzung o.ä. speichern willst, packe einfach ein `--save` ans Ende der Anfrage:
+
+    > view --grün --save
+    Enter file name to store input in: (Gib hier einen Dateinamen ein, welcher in ".txt" ENDEN MUSS(z.B.: "output.txt"))
+                                        Beachte: Existiert die Datei bereits, wird sie überschrieben!!
+    Your output was saved in (Pfad zu Deiner Datei)
+
+Und das war's! Ein praktisch nichts-könnender Konsolendialog in gut 300 Zeilen erklärt. Ich habe mein Bestes gegeben, hier alles so anschaulich und 
 verständlich wie möglich zu erklären. Sollten immernoch irgendwelche Fragen ungeklärt sein, stehe ich stets zu Rückfrage bereit - Andererseits kannst 
 Du praktisch nichts kaputt machen, im Zweifel einfach mal ausprobieren. Vielleicht habe ich ja sogar irgendwann noch Zeit, ein grafisches Interface 
 zu gestalten. 
@@ -337,6 +344,8 @@ list of commands:
 > view *
 > view * --view all
 > view -`attribute`
+> view --`color`
+> view (identifier) --save 
 
 > save `new_file`
 

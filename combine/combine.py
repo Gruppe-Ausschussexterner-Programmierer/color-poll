@@ -28,16 +28,16 @@ def append_csv(file, new_content):
 def get_master_file(age_str):
     try:
         age = int(age_str)
-        file = "master_age" + age_str
+        file = "age" + age_str
     except:
         age = None
-        file ="master_ageNone"
+        file ="ageNone"
     
     if age:
         if age <= 9:
-            file = "master_age9_minus"
+            file = "age9_minus"
         if age == 18:
-            file = "master_age18_plus"
+            file = "age18_plus"
     file += ".csv"
 
     return file
@@ -59,7 +59,7 @@ if __name__ == "__main__":
                 
                     try:
                         if int(row[0]) > 18: #only > instead of >= since 18 year olds are already stored in that file
-                            append_csv(RESULTS_FINAL + "master_age18_plus.csv", row)
+                            append_csv(RESULTS_FINAL + "age18_plus.csv", row)
                     except:
                         pass
                 time.sleep(.25)

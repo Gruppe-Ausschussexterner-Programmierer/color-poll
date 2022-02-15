@@ -2,6 +2,7 @@ from lib import file as csv
 import os
 import glob
 from bsql import bsql as bs
+import traceback
 
 WORKING_DIR = os.path.abspath(os.path.dirname(__file__))
 RESULTS_DIR = os.path.abspath(WORKING_DIR + "/../.data/results/")
@@ -85,10 +86,10 @@ def print_all_filenames():
 
 
 if __name__ == "__main__":
-    print("# BSQL v1.1.1\n# developed by GAP as part of the 'color-poll' project\n"
+    print("# BSQL v1.2.1\n# developed by GAP as part of the 'color-poll' project\n"
     "# check README.txt or Dokumentation_Deutsch.txt for use guide\n\n")
     while True:
         try:
             run_console_dialogue()
-        except:
-            print("invalid syntax")
+        except Exception as e:
+            print(str(traceback.print_exception(type(e), e, e.__traceback__)))
